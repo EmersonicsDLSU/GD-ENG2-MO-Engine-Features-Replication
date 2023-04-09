@@ -389,6 +389,8 @@
     <ClCompile Include="BNS_MultipleScene_UI.cpp">
       <Filter>GameEngine\UI\MultipleSceneList</Filter>
     </ClCompile>
+    <ClCompile Include="IETThread.cpp" />
+    <ClCompile Include="GlobalSemaphore.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BNS_AppWindow.h">
@@ -650,6 +652,8 @@
     <ClInclude Include="BNS_MultipleScene_UI.h">
       <Filter>GameEngine\UI\MultipleSceneList</Filter>
     </ClInclude>
+    <ClInclude Include="IETThread.h" />
+    <ClInclude Include="GlobalSemaphore.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BNS_PixelTex.hlsl">

@@ -216,6 +216,8 @@
     <ClCompile Include="BNS_Window.cpp" />
     <ClCompile Include="BNS_Console_UI.cpp" />
     <ClCompile Include="BNS_EditorAction.cpp" />
+    <ClCompile Include="GlobalSemaphore.cpp" />
+    <ClCompile Include="IETThread.cpp" />
     <ClCompile Include="IMGUI\imgui.cpp" />
     <ClCompile Include="IMGUI\imgui_demo.cpp" />
     <ClCompile Include="IMGUI\imgui_draw.cpp" />
@@ -272,6 +274,8 @@
     <ClInclude Include="BNS_TransformSystem.h" />
     <ClInclude Include="BNS_EditorAction.h" />
     <ClInclude Include="BNS_ViewMode_UI.h" />
+    <ClInclude Include="GlobalSemaphore.h" />
+    <ClInclude Include="IETThread.h" />
     <ClInclude Include="IMGUI\imconfig.h" />
     <ClInclude Include="IMGUI\imgui.h" />
     <ClInclude Include="IMGUI\imgui_impl_dx11.h" />
