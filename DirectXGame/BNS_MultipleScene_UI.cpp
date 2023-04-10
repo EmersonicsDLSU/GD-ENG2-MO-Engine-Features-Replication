@@ -31,7 +31,7 @@ void BNS_MultipleScene_UI::DrawUI()
 
 	// creates an icon to the file
 	TexturePtr icon = BNS_FileExplorer::GetInstance()->GetImageHashTable()["folder_icon"];
-
+	
 	for (int i = 0; i < 5; ++i)
 	{
 		ImGui::PushID(i);
@@ -42,13 +42,14 @@ void BNS_MultipleScene_UI::DrawUI()
 		ImVec2 size = { thumbnailSize, thumbnailSize };
 		// Draw the button
 		ImGui::GetWindowDrawList()->AddRectFilled(pos, { pos.x + size.x, pos.y + size.y }, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
-
+		
+		
 		ImGui::ImageButton((void*)icon.get()->GetShaderResourceView(),
 			{ thumbnailSize, thumbnailSize }, { -1, 0 }, { 0,1 });
+		
 
 		if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 		{
-			//BNS_PrimitiveCreation::Instance()->CreateTexturedCube();
 			if (i == 0)
 				BNS_PrimitiveCreation::Instance()->CreatePlane();
 			else if (i == 1)
@@ -59,6 +60,38 @@ void BNS_MultipleScene_UI::DrawUI()
 				BNS_PrimitiveCreation::Instance()->CreateTeapot();
 			else if (i == 4)
 				BNS_PrimitiveCreation::Instance()->CreateEarth();
+		}
+		else if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
+		{
+			ImGui::OpenPopup("ImageContextMenu");
+		}
+		if (ImGui::BeginPopup("ImageContextMenu"))
+		{
+			if (ImGui::Button("X", ImVec2(25,25)))
+			{
+				if (i == 0)
+				{
+					std::cout << "Delete 1" << std::endl;
+				}
+				else if (i == 1)
+				{
+					std::cout << "Delete 2" << std::endl;
+				}
+				else if (i == 2)
+				{
+					std::cout << "Delete 3" << std::endl;
+				}
+				else if (i == 3)
+				{
+					std::cout << "Delete 4" << std::endl;
+				}
+				else if (i == 4)
+				{
+					std::cout << "Delete 5" << std::endl;
+				}
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::EndPopup();
 		}
 		ImGui::PopStyleColor();
 
@@ -73,9 +106,13 @@ void BNS_MultipleScene_UI::DrawUI()
 		std::string percentageStr = std::to_string(static_cast<int>(percentage)) + "%";
 		ImGui::GetWindowDrawList()->AddText(textPos, ImGui::GetColorU32(ImGuiCol_Text), percentageStr.c_str());
 
-
 		ImGui::NextColumn();
 		ImGui::PopID();
+	}
+
+	if (ImGui::Button("View All", ImVec2(100, 50)))
+	{
+		// view all scenes
 	}
 
 	ImGui::End();
