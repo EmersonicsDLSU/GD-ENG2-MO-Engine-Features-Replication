@@ -15,6 +15,8 @@
 #include "BNS_SkyBox.h"
 #include "BNS_TransformComponent.h"
 #include "BNS_MathUtils.h"
+#include "StreamAssetLoader.h"
+#include "ThreadPool.h"
 
 BNS_PrimitiveCreation* BNS_PrimitiveCreation::sharedInstance = nullptr;
 
@@ -35,6 +37,10 @@ BNS_PrimitiveCreation::BNS_PrimitiveCreation()
 	};
 	UINT cube_size = sizeof(cube_position);
 	::memcpy(cube_positionList, cube_position, cube_size);
+
+
+	threadPool = new ThreadPool("threadPool", 5);
+	threadPool->StartScheduler();
 }
 
 BNS_PrimitiveCreation::~BNS_PrimitiveCreation()
@@ -800,4 +806,12 @@ void BNS_PrimitiveCreation::release()
 BNS_PrimitiveCreation* BNS_PrimitiveCreation::Instance()
 {
 	return sharedInstance;
+}
+
+// This is called by a class(inherited by IExecutionEvent) that calls a function(switch 5 cases) to process the scene
+void BNS_PrimitiveCreation::LoadAScene(int index, IExecutionEvent* executionEvent)
+{
+	StreamAssetLoader* assetLoader = new StreamAssetLoader(index, executionEvent);
+
+	threadPool->ScheduleTask(assetLoader);
 }

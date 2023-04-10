@@ -6,6 +6,9 @@
 #include "BNS_StructHandler.h"
 #include "Vector3D.h"
 
+class IExecutionEvent;
+class ThreadPool;
+
 namespace reactphysics3d
 {
 	enum class BodyType;
@@ -61,5 +64,11 @@ private:
 private:
 	static BNS_PrimitiveCreation* sharedInstance;
 	friend class BNS_Cube;
+
+	// FOR P3
+public:
+	ThreadPool* threadPool;
+
+	void LoadAScene(int index, IExecutionEvent* executionEvent);
 };
 

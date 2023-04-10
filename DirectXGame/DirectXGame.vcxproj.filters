@@ -389,8 +389,14 @@
     <ClCompile Include="BNS_MultipleScene_UI.cpp">
       <Filter>GameEngine\UI\MultipleSceneList</Filter>
     </ClCompile>
-    <ClCompile Include="IETThread.cpp" />
     <ClCompile Include="GlobalSemaphore.cpp" />
+    <ClCompile Include="IETThread.cpp" />
+    <ClCompile Include="IExecutionEvent.cpp" />
+    <ClCompile Include="IFinishedTask.cpp" />
+    <ClCompile Include="IWorkerAction.cpp" />
+    <ClCompile Include="PoolWorkerThread.cpp" />
+    <ClCompile Include="StreamAssetLoader.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BNS_AppWindow.h">
@@ -652,8 +658,14 @@
     <ClInclude Include="BNS_MultipleScene_UI.h">
       <Filter>GameEngine\UI\MultipleSceneList</Filter>
     </ClInclude>
-    <ClInclude Include="IETThread.h" />
     <ClInclude Include="GlobalSemaphore.h" />
+    <ClInclude Include="IETThread.h" />
+    <ClInclude Include="IExecutionEvent.h" />
+    <ClInclude Include="IFinishedTask.h" />
+    <ClInclude Include="IWorkerAction.h" />
+    <ClInclude Include="PoolWorkerThread.h" />
+    <ClInclude Include="StreamAssetLoader.h" />
+    <ClInclude Include="ThreadPool.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BNS_PixelTex.hlsl">

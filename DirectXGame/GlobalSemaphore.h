@@ -10,5 +10,5 @@ public:
 	void release(int keys);
 
 private:
-	std::counting_semaphore<1000>* semaphore;
+	std::counting_semaphore<10>* semaphore;
 };

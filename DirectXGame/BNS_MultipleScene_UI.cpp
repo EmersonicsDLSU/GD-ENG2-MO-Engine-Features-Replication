@@ -13,6 +13,12 @@ BNS_MultipleScene_UI::~BNS_MultipleScene_UI()
 {
 }
 
+void BNS_MultipleScene_UI::onExecute(int index)
+{
+	switch (index) {  }
+
+}
+
 void BNS_MultipleScene_UI::DrawUI()
 {
 
@@ -51,15 +57,15 @@ void BNS_MultipleScene_UI::DrawUI()
 		if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 		{
 			if (i == 0)
-				BNS_PrimitiveCreation::Instance()->CreatePlane();
+				BNS_PrimitiveCreation::Instance()->LoadAScene(0, this);
 			else if (i == 1)
-				BNS_PrimitiveCreation::Instance()->CreateBunny();
+				BNS_PrimitiveCreation::Instance()->LoadAScene(1, this);
 			else if (i == 2)
-				BNS_PrimitiveCreation::Instance()->CreateArmadillo();
+				BNS_PrimitiveCreation::Instance()->LoadAScene(2, this);
 			else if (i == 3)
-				BNS_PrimitiveCreation::Instance()->CreateTeapot();
+				BNS_PrimitiveCreation::Instance()->LoadAScene(3, this);
 			else if (i == 4)
-				BNS_PrimitiveCreation::Instance()->CreateEarth();
+				BNS_PrimitiveCreation::Instance()->LoadAScene(4, this);
 		}
 		else if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
 		{
