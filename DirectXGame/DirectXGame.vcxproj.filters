@@ -181,6 +181,9 @@
     <Filter Include="GameEngine\UI\MultipleSceneList">
       <UniqueIdentifier>{3f63e33d-dbe3-4950-ba14-dd948c803742}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Threads">
+      <UniqueIdentifier>{7c08beb0-e387-4891-8542-b691bc5dd93a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BNS_main.cpp">
@@ -389,14 +392,31 @@
     <ClCompile Include="BNS_MultipleScene_UI.cpp">
       <Filter>GameEngine\UI\MultipleSceneList</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalSemaphore.cpp" />
-    <ClCompile Include="IETThread.cpp" />
-    <ClCompile Include="IExecutionEvent.cpp" />
-    <ClCompile Include="IFinishedTask.cpp" />
-    <ClCompile Include="IWorkerAction.cpp" />
-    <ClCompile Include="PoolWorkerThread.cpp" />
-    <ClCompile Include="StreamAssetLoader.cpp" />
-    <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="GlobalSemaphore.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="IETThread.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="IExecutionEvent.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="IFinishedTask.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="IWorkerAction.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="PoolWorkerThread.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="StreamAssetLoader.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadPool.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="P3_ObjectID.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BNS_AppWindow.h">
@@ -658,14 +678,31 @@
     <ClInclude Include="BNS_MultipleScene_UI.h">
       <Filter>GameEngine\UI\MultipleSceneList</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalSemaphore.h" />
-    <ClInclude Include="IETThread.h" />
-    <ClInclude Include="IExecutionEvent.h" />
-    <ClInclude Include="IFinishedTask.h" />
-    <ClInclude Include="IWorkerAction.h" />
-    <ClInclude Include="PoolWorkerThread.h" />
-    <ClInclude Include="StreamAssetLoader.h" />
-    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="GlobalSemaphore.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="IETThread.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="IExecutionEvent.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="IFinishedTask.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="IWorkerAction.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="PoolWorkerThread.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamAssetLoader.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="P3_ObjectID.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BNS_PixelTex.hlsl">

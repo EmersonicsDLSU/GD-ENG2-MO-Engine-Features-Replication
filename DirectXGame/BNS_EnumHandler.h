@@ -67,6 +67,15 @@ enum class ComponentType
 	Transform
 };
 
+enum class P3_ObjectType
+{
+	TEAPOT,
+	STATUE,
+	BUNNY,
+	ARMADILLO,
+	EARTH
+};
+
 //DEPRECATED
 enum class LogType
 {

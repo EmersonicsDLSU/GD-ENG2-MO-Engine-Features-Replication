@@ -10,7 +10,7 @@ class IETThread
 {
 public:
 	IETThread();
-	~IETThread();
+	virtual ~IETThread();
 
 	void start(); //schedules thread execution
 	static void sleep(int ms);

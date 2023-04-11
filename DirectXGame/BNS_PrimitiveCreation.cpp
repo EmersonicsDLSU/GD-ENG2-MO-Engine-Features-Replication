@@ -38,6 +38,13 @@ BNS_PrimitiveCreation::BNS_PrimitiveCreation()
 	UINT cube_size = sizeof(cube_position);
 	::memcpy(cube_positionList, cube_position, cube_size);
 
+	// 5 scenes only
+	for (int i = 0; i < 5; ++i)
+	{
+		std::vector<BNS_AGameObject*> sceneObjects;
+		sceneObjectDictionary[i] = sceneObjects;
+	}
+
 
 	threadPool = new ThreadPool("threadPool", 5);
 	threadPool->StartScheduler();
@@ -197,7 +204,6 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateTeapot(Vector3D pos, Vector3D scal
 
 	if (isAddedToScene)
 		BNS_GameObjectManager::get()->GetObjectList().emplace_back(cube);
-	BNS_ActionHistory::GetInstance()->recordAction(cube->GetName());
 	return cube;
 }
 
@@ -806,6 +812,44 @@ void BNS_PrimitiveCreation::release()
 BNS_PrimitiveCreation* BNS_PrimitiveCreation::Instance()
 {
 	return sharedInstance;
+}
+
+void BNS_PrimitiveCreation::ShowScene(int sceneIndex)
+{
+	if (sceneObjectDictionary[sceneIndex].size() < maxPopulation) return;
+
+	HideAll();
+	// show the objects in the specific scene
+	for (auto objs : sceneObjectDictionary[sceneIndex])
+	{
+		objs->SetActive(true);
+	}
+}
+
+void BNS_PrimitiveCreation::ShowAll()
+{
+	for (auto it = sceneObjectDictionary.begin(); it != sceneObjectDictionary.end(); ++it) {
+		int key = it->first;
+		std::vector<BNS_AGameObject*>& sceneObjectsRef = it->second;
+
+		for (auto objs : sceneObjectsRef)
+		{
+			objs->SetActive(true);
+		}
+	}
+}
+
+void BNS_PrimitiveCreation::HideAll()
+{
+	for (auto it = sceneObjectDictionary.begin(); it != sceneObjectDictionary.end(); ++it) {
+		int key = it->first;
+		std::vector<BNS_AGameObject*>& sceneObjectsRef = it->second;
+
+		for (auto objs : sceneObjectsRef)
+		{
+			objs->SetActive(false);
+		}
+	}
 }
 
 // This is called by a class(inherited by IExecutionEvent) that calls a function(switch 5 cases) to process the scene

@@ -65,8 +65,6 @@ public:
 };
 
 
-
-
 class BNS_StructHandler
 {
 	

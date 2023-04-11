@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <reactphysics3d/components/RigidBodyComponents.h>
 
 #include "BNS_AGameObject.h"
@@ -68,7 +69,13 @@ private:
 	// FOR P3
 public:
 	ThreadPool* threadPool;
+	const int maxPopulation = 1;
+	using SceneObjectDictionary = std::map<int, std::vector<BNS_AGameObject*>>;
+	SceneObjectDictionary sceneObjectDictionary;
 
+	void ShowScene(int sceneIndex);
+	void ShowAll();
+	void HideAll();
 	void LoadAScene(int index, IExecutionEvent* executionEvent);
 };
 
