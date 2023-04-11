@@ -820,10 +820,23 @@ void BNS_PrimitiveCreation::ShowScene(int sceneIndex)
 
 	HideAll();
 	// show the objects in the specific scene
-	for (auto objs : sceneObjectDictionary[sceneIndex])
+	for (auto obj : sceneObjectDictionary[sceneIndex])
 	{
-		objs->SetActive(true);
+		obj->SetActive(true);
 	}
+}
+
+void BNS_PrimitiveCreation::ResetScene(int sceneIndex)
+{
+	if (sceneObjectDictionary[sceneIndex].size() < maxPopulation) return;
+
+	// delete all the objects
+	for (auto obj : sceneObjectDictionary[sceneIndex])
+	{
+		BNS_GameObjectManager::get()->DeleteObject(obj);
+	}
+	sceneObjectDictionary[sceneIndex].clear();
+	sceneObjectDictionary[sceneIndex].shrink_to_fit();
 }
 
 void BNS_PrimitiveCreation::ShowAll()

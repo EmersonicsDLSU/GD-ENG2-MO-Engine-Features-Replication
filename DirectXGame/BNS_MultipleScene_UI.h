@@ -19,8 +19,12 @@ private:
 	bool active;
 public:
 	std::vector<P3_ObjectID*> objectsToLoad;
-	std::vector<P3_ObjectID*> objectsOnReserve;
-	void ExecuteObject(P3_ObjectID *objectID);
+	std::vector<P3_ObjectID*> objectsOnScene;
+	void ExecuteObject(P3_ObjectID* objectID);
+	void DeleteObjectInScene(int sceneIndex);
+private:
+	void OnEntryLeftClick(int i);
+	void OnEntryRightClick(int i);
 };
 
 

@@ -61,7 +61,7 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 			}
 			objectsToLoad.erase(objectsToLoad.begin() + indexObjList);
 			// add object
-			objectsOnReserve.emplace_back(objectWithSceneIndex);
+			objectsOnScene.emplace_back(objectWithSceneIndex);
 		}
 		// if there's no more object to execute, then we break this thread
 		else break;
@@ -89,12 +89,6 @@ void BNS_MultipleScene_UI::DrawUI()
 	
 	for (int i = 0; i < 5; ++i)
 	{
-		bool isEmpty = true, isComplete = false;
-		if (BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[i].size() != 0)
-			isEmpty = false;
-		if (BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[i].size() == BNS_PrimitiveCreation::Instance()->maxPopulation)
-			isComplete = true;
-
 		ImGui::PushID(i);
 		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
 
@@ -107,74 +101,10 @@ void BNS_MultipleScene_UI::DrawUI()
 		
 		ImGui::ImageButton((void*)icon.get()->GetShaderResourceView(),
 			{ thumbnailSize, thumbnailSize }, { -1, 0 }, { 0,1 });
-		
 
-		if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
-		{
-			// if not yet
-			if (i == 0 && isEmpty)
-			{
-				std::cout << "Create 1" << std::endl;
-				BNS_PrimitiveCreation::Instance()->LoadAScene(0, this);
-			}
-			else if (i == 0 && isComplete)
-			{
-				std::cout << "Show 1" << std::endl;
-				BNS_PrimitiveCreation::Instance()->ShowScene(0);
-			}
-			else if (i == 1 && isEmpty)
-			{
-				std::cout << "Create 2" << std::endl;
-				BNS_PrimitiveCreation::Instance()->LoadAScene(1, this);
-			}
-			else if (i == 2 && isEmpty)
-			{
-				std::cout << "Create 3" << std::endl;
-				BNS_PrimitiveCreation::Instance()->LoadAScene(2, this);
-			}
-			else if (i == 3 && isEmpty)
-			{
-				std::cout << "Create 4" << std::endl;
-				BNS_PrimitiveCreation::Instance()->LoadAScene(3, this);
-			}
-			else if (i == 4 && isEmpty)
-			{
-				std::cout << "Create 5" << std::endl;
-				BNS_PrimitiveCreation::Instance()->LoadAScene(4, this);
-			}
-		}
-		else if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
-		{
-			ImGui::OpenPopup("ImageContextMenu");
-		}
-		if (ImGui::BeginPopup("ImageContextMenu"))
-		{
-			if (ImGui::Button("X", ImVec2(25,25)))
-			{
-				if (i == 0)
-				{
-					std::cout << "Delete 1" << std::endl;
-				}
-				else if (i == 1)
-				{
-					std::cout << "Delete 2" << std::endl;
-				}
-				else if (i == 2)
-				{
-					std::cout << "Delete 3" << std::endl;
-				}
-				else if (i == 3)
-				{
-					std::cout << "Delete 4" << std::endl;
-				}
-				else if (i == 4)
-				{
-					std::cout << "Delete 5" << std::endl;
-				}
-				ImGui::CloseCurrentPopup();
-			}
-			ImGui::EndPopup();
-		}
+		OnEntryLeftClick(i);
+		OnEntryRightClick(i);
+
 		ImGui::PopStyleColor();
 
 		// Get the text size
@@ -211,19 +141,134 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateTeapot({0,0,0}, objectID->scale, true);
 		break;
 	case P3_ObjectType::STATUE:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateTeapot({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateStatue({ 0,0,0 }, objectID->scale, true);
 		break;
 	case P3_ObjectType::BUNNY:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateTeapot({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateBunny({ 0,0,0 }, objectID->scale, true);
 		break;
 	case P3_ObjectType::ARMADILLO:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateTeapot({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateArmadillo({ 0,0,0 }, objectID->scale, true);
 		break;
 	case P3_ObjectType::EARTH:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateTeapot({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateEarth({ 0,0,0 }, objectID->scale, true);
 		break;
 	}
 	objectToCreate->SetActive(false);
 	// add it to the sceneObjectDictionary
 	BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[objectID->sceneIndex].emplace_back(objectToCreate);
+}
+
+void BNS_MultipleScene_UI::DeleteObjectInScene(int sceneIndex)
+{
+	for (auto it = objectsOnScene.begin(); it != objectsOnScene.end();)
+	{
+		if ((*it)->sceneIndex == sceneIndex)
+		{
+			objectsToLoad.push_back(*it);
+			it = objectsOnScene.erase(it);
+		}
+		else
+		{ // only increment if not erasing an element
+			++it;
+		}
+	}
+}
+
+void BNS_MultipleScene_UI::OnEntryLeftClick(int i)
+{
+	bool isEmpty = true, isComplete = false;
+	if (BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[i].size() != 0)
+		isEmpty = false;
+	if (BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[i].size() == BNS_PrimitiveCreation::Instance()->maxPopulation)
+		isComplete = true;
+
+	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+	{
+		// if not yet
+		if (i == 0 && isEmpty)
+		{
+			BNS_PrimitiveCreation::Instance()->LoadAScene(0, this);
+		}
+		else if (i == 0 && isComplete)
+		{
+			BNS_PrimitiveCreation::Instance()->ShowScene(0);
+		}
+		else if (i == 1 && isEmpty)
+		{
+			BNS_PrimitiveCreation::Instance()->LoadAScene(1, this);
+		}
+		else if (i == 1 && isComplete)
+		{
+			BNS_PrimitiveCreation::Instance()->ShowScene(1);
+		}
+		else if (i == 2 && isEmpty)
+		{
+			BNS_PrimitiveCreation::Instance()->LoadAScene(2, this);
+		}
+		else if (i == 2 && isComplete)
+		{
+			BNS_PrimitiveCreation::Instance()->ShowScene(2);
+		}
+		else if (i == 3 && isEmpty)
+		{
+			BNS_PrimitiveCreation::Instance()->LoadAScene(3, this);
+		}
+		else if (i == 3 && isComplete)
+		{
+			BNS_PrimitiveCreation::Instance()->ShowScene(3);
+		}
+		else if (i == 4 && isEmpty)
+		{
+			BNS_PrimitiveCreation::Instance()->LoadAScene(4, this);
+		}
+		else if (i == 4 && isComplete)
+		{
+			BNS_PrimitiveCreation::Instance()->ShowScene(4);
+		}
+	}
+}
+
+void BNS_MultipleScene_UI::OnEntryRightClick(int i)
+{
+	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+	{
+		
+	}
+	else if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
+	{
+		ImGui::OpenPopup("ImageContextMenu");
+	}
+	if (ImGui::BeginPopup("ImageContextMenu"))
+	{
+		if (ImGui::Button("X", ImVec2(25, 25)))
+		{
+			if (i == 0)
+			{
+				DeleteObjectInScene(0);
+				BNS_PrimitiveCreation::Instance()->ResetScene(0);
+			}
+			else if (i == 1)
+			{
+				DeleteObjectInScene(1);
+				BNS_PrimitiveCreation::Instance()->ResetScene(1);
+			}
+			else if (i == 2)
+			{
+				DeleteObjectInScene(2);
+				BNS_PrimitiveCreation::Instance()->ResetScene(2);
+			}
+			else if (i == 3)
+			{
+				DeleteObjectInScene(3);
+				BNS_PrimitiveCreation::Instance()->ResetScene(3);
+			}
+			else if (i == 4)
+			{
+				DeleteObjectInScene(4);
+				BNS_PrimitiveCreation::Instance()->ResetScene(4);
+			}
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
 }

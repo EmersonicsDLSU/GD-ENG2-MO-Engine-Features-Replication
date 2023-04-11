@@ -74,6 +74,7 @@ public:
 	SceneObjectDictionary sceneObjectDictionary;
 
 	void ShowScene(int sceneIndex);
+	void ResetScene(int sceneIndex);
 	void ShowAll();
 	void HideAll();
 	void LoadAScene(int index, IExecutionEvent* executionEvent);
