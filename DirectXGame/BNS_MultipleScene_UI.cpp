@@ -214,11 +214,13 @@ void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 			{
 				ResetAllButtonsProgressView();
 				PC_instance->sceneStatusDictionary[i]->isProgressViewed = true;
-				break;
+				std::cout << "Progress Viewed" << std::endl;
+				continue;
 			}
 
 			if (index == i && PC_instance->sceneStatusDictionary[i]->isEmpty)
 			{
+				std::cout << "Load Scene" << std::endl;
 				PC_instance->LoadAScene(index, this);
 			}
 			else if (index == i && PC_instance->sceneStatusDictionary[i]->isComplete)
@@ -280,24 +282,24 @@ void BNS_MultipleScene_UI::ShowProgressBar(int index)
 	// show progress bar when loading icon is clicked
 	if (PC_instance->sceneStatusDictionary[index]->isProgressViewed)
 	{
-		ImGui::OpenPopup("Progress");
-		if (ImGui::BeginPopup("Progress")) {
-			// Calculate progress value
-			float progress = (float)PC_instance->sceneObjectDictionary[index].size() /
-				(float)PC_instance->maxPopulation;
-			if (progress >= 1.0f) {
-				// Close progress window
-				ImGui::CloseCurrentPopup();
-				PC_instance->sceneStatusDictionary[index]->isProgressViewed = false;
-				progress = 0.0f;
-			}
-			else {
-				// Draw progress bar
-				ImGui::ProgressBar(progress * 100.0f);
-				std::cout << "Show Progress Bar" << std::endl;
-			}
+		// Calculate progress value
+		float progress = (float)PC_instance->sceneObjectDictionary[index].size() /
+			(float)PC_instance->maxPopulation;
 
-			ImGui::EndPopup();
+		std::cout << "Progress: " << progress << std::endl;
+		if (progress >= 1.0f) {
+			// Close progress window
+			ImGui::CloseCurrentPopup();
+			PC_instance->sceneStatusDictionary[index]->isProgressViewed = false;
+			progress = 0.0f;
+		}
+		else {
+			ImGui::Begin("Progress Bar");
+			// Draw progress bar
+			ImGui::Text("Scene: %d", index + 1);
+			ImGui::ProgressBar(progress, ImVec2(-1, 0), (std::to_string(progress * 100.0f) + "%").c_str());
+			std::cout << "Show Progress Bar" << std::endl;
+			ImGui::End();
 		}
 	}
 }
