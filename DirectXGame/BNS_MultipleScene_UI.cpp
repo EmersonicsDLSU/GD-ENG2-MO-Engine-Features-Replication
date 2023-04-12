@@ -263,16 +263,17 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 {
 	// create the object
 	
-	
+	Vector3D pos;
 	
 		
 		int randomNumber = rand() % unused.size();
 
 		used.emplace_back(unused[randomNumber]);
+		pos = unused[randomNumber].pos;
 		unused.erase(unused.begin() + randomNumber);
-	
+		
 
-	
+		
 
 	BNS_AGameObject *objectToCreate = nullptr;
 	switch(objectID->objectType)
@@ -280,83 +281,83 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 
 	case P3_ObjectType::TEAPOT:
 
-		objectToCreate = PC_instance->CreateTeapot({0,0,0}, objectID->scale, true);
+		objectToCreate = PC_instance->CreateTeapot(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::STATUE:
-		objectToCreate = PC_instance->CreateStatue({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateStatue(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::BUNNY:
-		objectToCreate = PC_instance->CreateBunny({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateBunny(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::ARMADILLO:
-		objectToCreate = PC_instance->CreateArmadillo({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateArmadillo(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::EARTH:
-		objectToCreate = PC_instance->CreateEarth({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateEarth(pos, objectID->scale, true);
 		break;
 
 	case P3_ObjectType::CHARMANDER:
-		objectToCreate = PC_instance->CreateCharmander({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateCharmander(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::CUBONE:
-		objectToCreate = PC_instance->CreateCubone({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateCubone(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::EEVEE:
-		objectToCreate = PC_instance->CreateEevee({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateEevee(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::FARFETCH:
-		objectToCreate = PC_instance->CreateFarfetch({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateFarfetch(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::GROWLITHE:
-		objectToCreate = PC_instance->CreateGrowlithe({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateGrowlithe(pos, objectID->scale, true);
 		break;
 
 	case P3_ObjectType::MACHOP:
-		objectToCreate = PC_instance->CreateMachop({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateMachop(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::NIDORANF:
-		objectToCreate = PC_instance->CreateNidoranF({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateNidoranF(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::NIDORANM:
-		objectToCreate = PC_instance->CreateNidoranM({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateNidoranM(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::ODDISH:
-		objectToCreate = PC_instance->CreateOddish({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateOddish(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::PIDGEY:
-		objectToCreate = PC_instance->CreatePidgey({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreatePidgey(pos, objectID->scale, true);
 		break;
 
 	case P3_ObjectType::PIKACHU:
-		objectToCreate = PC_instance->CreatePikachu({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreatePikachu(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::PALKIA:
-		objectToCreate = PC_instance->CreatePalkia({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreatePalkia(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::PSYDUCK:
-		objectToCreate = PC_instance->CreatePsyduck({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreatePsyduck(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::SEEL:
-		objectToCreate = PC_instance->CreateSeel({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateSeel(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::SQUIRTLE:
-		objectToCreate = PC_instance->CreateSquirtle({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateSquirtle(pos, objectID->scale, true);
 		break;
 
 	case P3_ObjectType::VULPIX:
-		objectToCreate = PC_instance->CreateVulpix({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateVulpix(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::JIGGLYPUFF:
-		objectToCreate = PC_instance->CreateJigglypuff({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateJigglypuff(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::GIRATINA:
-		objectToCreate = PC_instance->CreateGiratina({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateGiratina(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::CYNDAQUIL:
-		objectToCreate = PC_instance->CreateCyndaquil({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateCyndaquil(pos, objectID->scale, true);
 		break;
 	case P3_ObjectType::DIALGA:
-		objectToCreate = PC_instance->CreateDialga({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateDialga(pos, objectID->scale, true);
 		break;
 	}
 	objectToCreate->SetActive(false);
@@ -372,6 +373,7 @@ void BNS_MultipleScene_UI::DeleteObjectInScene(int sceneIndex)
 		{
 			objectsToLoad.push_back(*it);
 			it = objectsOnScene.erase(it);
+			
 		}
 		else
 		{ // only increment if not erasing an element
@@ -425,8 +427,11 @@ void BNS_MultipleScene_UI::OnEntryRightClick(int index)
 			{
 				if (index == i)
 				{
+					
 					DeleteObjectInScene(index);
 					PC_instance->ResetScene(index);
+				
+
 				}
 			}
 			ImGui::CloseCurrentPopup();
