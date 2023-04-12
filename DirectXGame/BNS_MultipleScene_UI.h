@@ -3,6 +3,8 @@
 #include "BNS_AUIScreen.h"
 #include "IExecutionEvent.h"
 #include "Vector3D.h"
+#include <semaphore>
+#include <mutex>
 
 
 class P3_ObjectID;
@@ -18,6 +20,9 @@ public:
 private:
 	BNS_PrimitiveCreation* PC_instance;
 	bool active;
+
+	std::counting_semaphore<1>* mutexSem;
+	std::counting_semaphore<5>* showAllSem;
 public:
 	std::vector<P3_ObjectID*> objectsToLoad;
 	std::vector<P3_ObjectID*> objectsOnScene;
@@ -29,6 +34,7 @@ private:
 	void ResetAllButtonsView();
 	void ResetAllButtonsProgressView();
 	void ShowProgressBar(int index);
+	void OnViewAll();
 };
 
 
