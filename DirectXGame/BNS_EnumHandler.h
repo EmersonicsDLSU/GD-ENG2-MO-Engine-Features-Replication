@@ -69,12 +69,11 @@ enum class ComponentType
 
 enum class P3_ObjectType
 {
-	TEAPOT,
+	TEAPOT = 0,
 	STATUE,
 	BUNNY,
 	ARMADILLO,
 	EARTH,
-
 	CHARMANDER,
 	CUBONE,
 	EEVEE,

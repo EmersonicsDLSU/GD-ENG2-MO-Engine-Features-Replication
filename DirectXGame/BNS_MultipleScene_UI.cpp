@@ -9,12 +9,39 @@
 BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUIScreen(name, ID)
 {
 	PC_instance = BNS_PrimitiveCreation::Instance();
+	
+	for(int i = 0 ; i < 25; i++)
+	{
+		
+
+		
+			std::vector<P3_Tranforms> transform1;
+			P3_Tranforms trans_1 = { Vector3D(rand()%15,rand() % 15,rand() % 10),false};
+			transform1.emplace_back(trans_1);
+		
+
+		
+	}
+
+
+
 
 	// initialize semaphore
 	mutexSem = new std::counting_semaphore<1>(1);
 	showAllSem = new std::counting_semaphore<5>(0);
+	int counter = 0;
 
-	// Objects in SCENE 1
+	for(int i =0; i <5; i++)
+	{
+		for(int j = 0; j < 5; j++)
+		{
+			P3_ObjectID* obj_1 = new P3_ObjectID(counter, static_cast<P3_ObjectType>(counter), i);
+			objectsToLoad.emplace_back(obj_1);
+			counter++;
+		}
+		
+	}
+	/* Objects in SCENE 1
 	P3_ObjectID* obj_1 = new P3_ObjectID(0, P3_ObjectType::TEAPOT, 0);
 	P3_ObjectID* obj_2 = new P3_ObjectID(1, P3_ObjectType::CHARMANDER, 0);
 	P3_ObjectID* obj_3 = new P3_ObjectID(2, P3_ObjectType::CUBONE, 0);
@@ -68,7 +95,7 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 	objectsToLoad.emplace_back(obj_22);
 	objectsToLoad.emplace_back(obj_23);
 	objectsToLoad.emplace_back(obj_24);
-	objectsToLoad.emplace_back(obj_25);
+	objectsToLoad.emplace_back(obj_25);*/
 }
 
 BNS_MultipleScene_UI::~BNS_MultipleScene_UI()

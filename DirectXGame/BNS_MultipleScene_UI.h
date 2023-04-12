@@ -1,4 +1,6 @@
 #pragma once
+#include <map>
+
 #include "BNS_AGameObject.h"
 #include "BNS_AUIScreen.h"
 #include "IExecutionEvent.h"
@@ -7,6 +9,7 @@
 #include <mutex>
 
 
+struct P3_Tranforms;
 class P3_ObjectID;
 
 class BNS_MultipleScene_UI : public BNS_AUIScreen, public IExecutionEvent
@@ -29,6 +32,9 @@ public:
 	std::vector<P3_ObjectID*> objectsOnScene;
 	void ExecuteObject(P3_ObjectID* objectID);
 	void DeleteObjectInScene(int sceneIndex);
+
+	using TransformDictionary = std::map<int, std::vector<P3_Tranforms>>;
+	TransformDictionary transform_dictionary;
 private:
 	void OnEntryLeftClick(int i);
 	void OnEntryRightClick(int index);

@@ -74,6 +74,13 @@ public:
 	bool isProgressViewed = false;
 };
 
+struct P3_Tranforms
+{
+public:
+	Vector3D pos;
+	bool isOccupied = false;
+};
+
 class BNS_StructHandler
 {
 	
