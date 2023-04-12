@@ -52,6 +52,7 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 		}
 		if (containsObject)
 		{
+			mutexSem->acquire();
 			// create the object; object is still not active
 			ExecuteObject(objectWithSceneIndex);
 
@@ -186,7 +187,6 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	}
 	objectToCreate->SetActive(false);
 	// add it to the sceneObjectDictionary
-	mutexSem->acquire();
 	PC_instance->sceneObjectDictionary[objectID->sceneIndex].emplace_back(objectToCreate);
 }
 
@@ -327,6 +327,6 @@ void BNS_MultipleScene_UI::OnViewAll()
 	for (int index = 0; index < 5; ++index)
 	{
 		PC_instance->sceneStatusDictionary[index]->isViewed = true;
-		PC_instance->ShowScene(index);
 	}
+	PC_instance->ShowAll();
 }
