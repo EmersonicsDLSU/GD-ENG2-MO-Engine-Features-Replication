@@ -73,7 +73,9 @@ enum class P3_ObjectType
 	STATUE,
 	BUNNY,
 	ARMADILLO,
-	EARTH
+	EARTH,
+
+	
 };
 
 //DEPRECATED
