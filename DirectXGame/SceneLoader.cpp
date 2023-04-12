@@ -17,7 +17,7 @@ void SceneLoader::OnStartTask()
 {
 	//std::cout << "Running stream asset loader " << std::endl;
 	// simulate loading of very large file
-	IETThread::sleep(10000);
+	//IETThread::sleep(10000);
 
 	if (execEvent != nullptr)
 		execEvent->onExecute(sceneIndex);

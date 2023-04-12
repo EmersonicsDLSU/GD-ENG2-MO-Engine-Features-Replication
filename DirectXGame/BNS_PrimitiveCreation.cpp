@@ -257,7 +257,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateArmadillo(Vector3D pos, Vector3D s
 	std::string name = "armadillo";
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
-	cube->SetMesh(L"Assets\\pokemon\\Charmander\\Charmander.obj");
+	cube->SetMesh(L"Assets\\Meshes\\armadillo.obj");
 	cube->SetTexture(L"Assets\\Textures\\brick.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
@@ -758,12 +758,12 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreatePikachu(Vector3D pos, Vector3D sca
 	return cube;
 }
 
-BNS_AGameObject* BNS_PrimitiveCreation::CreatePoliwag(Vector3D pos, Vector3D scale, bool isAddedToScene)
+BNS_AGameObject* BNS_PrimitiveCreation::CreatePalkia(Vector3D pos, Vector3D scale, bool isAddedToScene)
 {
-	std::string name = "Poliwag";
+	std::string name = "Palkia";
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
-	cube->SetMesh(L"Assets\\obj\\poliwag.obj");
+	cube->SetMesh(L"Assets\\obj\\Palkia.obj");
 	cube->SetTexture(L"Assets\\Textures\\brick.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
@@ -884,12 +884,12 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateJigglypuff(Vector3D pos, Vector3D 
 	return cube;
 }
 
-BNS_AGameObject* BNS_PrimitiveCreation::CreateSnorlax(Vector3D pos, Vector3D scale, bool isAddedToScene)
+BNS_AGameObject* BNS_PrimitiveCreation::CreateGiratina(Vector3D pos, Vector3D scale, bool isAddedToScene)
 {
-	std::string name = "Snorlax";
+	std::string name = "Giratina";
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
-	cube->SetMesh(L"Assets\\obj\\snorlax.obj");
+	cube->SetMesh(L"Assets\\obj\\Giratina.obj");
 	cube->SetTexture(L"Assets\\Textures\\brick.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
@@ -905,12 +905,12 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateSnorlax(Vector3D pos, Vector3D sca
 	return cube;
 }
 
-BNS_AGameObject* BNS_PrimitiveCreation::CreateDitto(Vector3D pos, Vector3D scale, bool isAddedToScene)
+BNS_AGameObject* BNS_PrimitiveCreation::CreateCyndaquil(Vector3D pos, Vector3D scale, bool isAddedToScene)
 {
-	std::string name = "Ditto";
+	std::string name = "Cyndaquil";
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
-	cube->SetMesh(L"Assets\\obj\\Ditto.obj");
+	cube->SetMesh(L"Assets\\obj\\Cyndaquil.obj");
 	cube->SetTexture(L"Assets\\Textures\\brick.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
@@ -926,12 +926,12 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateDitto(Vector3D pos, Vector3D scale
 	return cube;
 }
 
-BNS_AGameObject* BNS_PrimitiveCreation::CreateGengar(Vector3D pos, Vector3D scale, bool isAddedToScene)
+BNS_AGameObject* BNS_PrimitiveCreation::CreateDialga(Vector3D pos, Vector3D scale, bool isAddedToScene)
 {
-	std::string name = "Gengar";
+	std::string name = "Dialga";
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
-	cube->SetMesh(L"Assets\\obj\\Gengar.obj");
+	cube->SetMesh(L"Assets\\obj\\Dialga.obj");
 	cube->SetTexture(L"Assets\\Textures\\brick.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);

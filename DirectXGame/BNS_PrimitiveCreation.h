@@ -60,16 +60,16 @@ public:
 	BNS_AGameObject* CreateOddish(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
 	BNS_AGameObject* CreatePidgey(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
 	BNS_AGameObject* CreatePikachu(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
-	BNS_AGameObject* CreatePoliwag(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
+	BNS_AGameObject* CreatePalkia(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
 	BNS_AGameObject* CreatePsyduck(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
 	BNS_AGameObject* CreateSeel(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
 	BNS_AGameObject* CreateSquirtle(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
 	BNS_AGameObject* CreateVulpix(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
 
 	BNS_AGameObject* CreateJigglypuff(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
-	BNS_AGameObject* CreateSnorlax(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
-	BNS_AGameObject* CreateDitto(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
-	BNS_AGameObject* CreateGengar(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
+	BNS_AGameObject* CreateGiratina(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
+	BNS_AGameObject* CreateCyndaquil(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
+	BNS_AGameObject* CreateDialga(Vector3D pos = { 0,0,0 }, Vector3D scale = { 1,1,1 }, bool isAddedToScene = true);
 
 private:
 	void CheckGameObjectName(std::string& name);

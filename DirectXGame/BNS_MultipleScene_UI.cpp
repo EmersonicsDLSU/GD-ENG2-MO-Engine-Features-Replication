@@ -20,35 +20,55 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 	P3_ObjectID* obj_3 = new P3_ObjectID(2, P3_ObjectType::CUBONE, 0);
 	P3_ObjectID* obj_4 = new P3_ObjectID(3, P3_ObjectType::EEVEE, 0);
 	P3_ObjectID *obj_5 = new P3_ObjectID(4, P3_ObjectType::FARFETCH, 0);
-	objectsToLoad.emplace_back(obj_1);
 	// Objects in SCENE 2
 	P3_ObjectID* obj_6 = new P3_ObjectID(5, P3_ObjectType::STATUE, 1);
 	P3_ObjectID* obj_7 = new P3_ObjectID(6, P3_ObjectType::MACHOP, 1);
 	P3_ObjectID* obj_8 = new P3_ObjectID(7, P3_ObjectType::NIDORANF, 1);
 	P3_ObjectID* obj_9 = new P3_ObjectID(8, P3_ObjectType::NIDORANM, 1);
 	P3_ObjectID* obj_10 = new P3_ObjectID(9, P3_ObjectType::ODDISH, 1);
-	objectsToLoad.emplace_back(obj_2);
 	// Objects in SCENE 3
 	P3_ObjectID* obj_11 = new P3_ObjectID(10, P3_ObjectType::BUNNY, 2);
 	P3_ObjectID* obj_12 = new P3_ObjectID(11, P3_ObjectType::PIKACHU, 2);
 	P3_ObjectID* obj_13 = new P3_ObjectID(12, P3_ObjectType::GROWLITHE, 2);
 	P3_ObjectID* obj_14 = new P3_ObjectID(13, P3_ObjectType::PIDGEY, 2);
-	P3_ObjectID* obj_15 = new P3_ObjectID(14, P3_ObjectType::POLIWAG, 2);
-	objectsToLoad.emplace_back(obj_3);
+	P3_ObjectID* obj_15 = new P3_ObjectID(14, P3_ObjectType::PALKIA, 2);
 	// Objects in SCENE 4
 	P3_ObjectID* obj_16 = new P3_ObjectID(15, P3_ObjectType::ARMADILLO, 3);
 	P3_ObjectID* obj_17 = new P3_ObjectID(16, P3_ObjectType::JIGGLYPUFF, 3);
-	P3_ObjectID* obj_18 = new P3_ObjectID(17, P3_ObjectType::SNORLAX, 3);
-	P3_ObjectID* obj_19 = new P3_ObjectID(18, P3_ObjectType::DITTO, 3);
-	P3_ObjectID* obj_20 = new P3_ObjectID(19, P3_ObjectType::GENGAR, 3);
-	objectsToLoad.emplace_back(obj_4);
+	P3_ObjectID* obj_18 = new P3_ObjectID(17, P3_ObjectType::GIRATINA, 3);
+	P3_ObjectID* obj_19 = new P3_ObjectID(18, P3_ObjectType::CYNDAQUIL, 3);
+	P3_ObjectID* obj_20 = new P3_ObjectID(19, P3_ObjectType::DIALGA, 3);
 	// Objects in SCENE 5
 	P3_ObjectID* obj_21 = new P3_ObjectID(20, P3_ObjectType::EARTH, 4);
 	P3_ObjectID* obj_22 = new P3_ObjectID(21, P3_ObjectType::PSYDUCK, 4);
 	P3_ObjectID* obj_23 = new P3_ObjectID(22, P3_ObjectType::SEEL, 4);
 	P3_ObjectID* obj_24 = new P3_ObjectID(23, P3_ObjectType::SQUIRTLE, 4);
 	P3_ObjectID* obj_25 = new P3_ObjectID(24, P3_ObjectType::VULPIX, 4);
+	objectsToLoad.emplace_back(obj_1);
+	objectsToLoad.emplace_back(obj_2);
+	objectsToLoad.emplace_back(obj_3);
+	objectsToLoad.emplace_back(obj_4);
 	objectsToLoad.emplace_back(obj_5);
+	objectsToLoad.emplace_back(obj_6);
+	objectsToLoad.emplace_back(obj_7);
+	objectsToLoad.emplace_back(obj_8);
+	objectsToLoad.emplace_back(obj_9);
+	objectsToLoad.emplace_back(obj_10);
+	objectsToLoad.emplace_back(obj_11);
+	objectsToLoad.emplace_back(obj_12);
+	objectsToLoad.emplace_back(obj_13);
+	objectsToLoad.emplace_back(obj_14);
+	objectsToLoad.emplace_back(obj_15);
+	objectsToLoad.emplace_back(obj_16);
+	objectsToLoad.emplace_back(obj_17);
+	objectsToLoad.emplace_back(obj_18);
+	objectsToLoad.emplace_back(obj_19);
+	objectsToLoad.emplace_back(obj_20);
+	objectsToLoad.emplace_back(obj_21);
+	objectsToLoad.emplace_back(obj_22);
+	objectsToLoad.emplace_back(obj_23);
+	objectsToLoad.emplace_back(obj_24);
+	objectsToLoad.emplace_back(obj_25);
 }
 
 BNS_MultipleScene_UI::~BNS_MultipleScene_UI()
@@ -73,6 +93,7 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 		if (containsObject)
 		{
 			mutexSem->acquire();
+			std::cout << "Execute Load Scene: " << sceneIndex << std::endl;
 			// create the object; object is still not active
 			ExecuteObject(objectWithSceneIndex);
 
@@ -94,6 +115,7 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 		// if there's no more object to execute, then we break this thread
 		else
 		{
+			std::cout << "Break" << std::endl;
 			// set the scene status
 			PC_instance->sceneStatusDictionary[sceneIndex]->isEmpty = false;
 			PC_instance->sceneStatusDictionary[sceneIndex]->isLoading = false;
@@ -269,8 +291,8 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	case P3_ObjectType::PIKACHU:
 		objectToCreate = PC_instance->CreatePikachu({ 0,0,0 }, objectID->scale, true);
 		break;
-	case P3_ObjectType::POLIWAG:
-		objectToCreate = PC_instance->CreatePoliwag({ 0,0,0 }, objectID->scale, true);
+	case P3_ObjectType::PALKIA:
+		objectToCreate = PC_instance->CreatePalkia({ 0,0,0 }, objectID->scale, true);
 		break;
 	case P3_ObjectType::PSYDUCK:
 		objectToCreate = PC_instance->CreatePsyduck({ 0,0,0 }, objectID->scale, true);
@@ -288,14 +310,14 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	case P3_ObjectType::JIGGLYPUFF:
 		objectToCreate = PC_instance->CreateJigglypuff({ 0,0,0 }, objectID->scale, true);
 		break;
-	case P3_ObjectType::SNORLAX:
-		objectToCreate = PC_instance->CreateSnorlax({ 0,0,0 }, objectID->scale, true);
+	case P3_ObjectType::GIRATINA:
+		objectToCreate = PC_instance->CreateGiratina({ 0,0,0 }, objectID->scale, true);
 		break;
-	case P3_ObjectType::DITTO:
-		objectToCreate = PC_instance->CreateDitto({ 0,0,0 }, objectID->scale, true);
+	case P3_ObjectType::CYNDAQUIL:
+		objectToCreate = PC_instance->CreateCyndaquil({ 0,0,0 }, objectID->scale, true);
 		break;
-	case P3_ObjectType::GENGAR:
-		objectToCreate = PC_instance->CreateGengar({ 0,0,0 }, objectID->scale, true);
+	case P3_ObjectType::DIALGA:
+		objectToCreate = PC_instance->CreateDialga({ 0,0,0 }, objectID->scale, true);
 		break;
 	}
 	objectToCreate->SetActive(false);
@@ -323,17 +345,18 @@ void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 {
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 	{
-		if (PC_instance->sceneStatusDictionary[index]->isLoading)
-		{
-			ResetAllButtonsProgressView();
-			PC_instance->sceneStatusDictionary[index]->isProgressViewed = true;
-			std::cout << "Progress Viewed" << index << std::endl;
-		}
 		for (int i = 0; i < 5; ++i)
 		{
+			if (PC_instance->sceneStatusDictionary[i]->isLoading)
+			{
+				ResetAllButtonsProgressView();
+				PC_instance->sceneStatusDictionary[i]->isProgressViewed = true;
+				std::cout << "Progress Viewed" << std::endl;
+				continue;
+			}
 			if (index == i && PC_instance->sceneStatusDictionary[i]->isEmpty)
 			{
-				std::cout << "Load Scene" << std::endl;
+				std::cout << "Load Scene: " << index << std::endl;
 				PC_instance->LoadAScene(index, this);
 			}
 			else if (index == i && PC_instance->sceneStatusDictionary[i]->isComplete)
