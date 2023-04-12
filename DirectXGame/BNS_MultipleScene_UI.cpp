@@ -10,19 +10,17 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 {
 	PC_instance = BNS_PrimitiveCreation::Instance();
 	
-	for(int i = 0 ; i < 25; i++)
+	for(int i = 0 ; i < 5; i++)
 	{
-		
-
-		
-			std::vector<P3_Tranforms> transform1;
-			P3_Tranforms trans_1 = { Vector3D(rand()%15,rand() % 15,rand() % 10),false};
+		std::vector<P3_Transforms> transform1;
+		for(int j = 0; j < 5; j++)
+		{
+			P3_Transforms trans_1 = { Vector3D( -5 + (5 * j) + i,-5 + (5 * j)+ i,-5 + (5 * j)+ i),false};
 			transform1.emplace_back(trans_1);
-		
-
-		
+		}
+		transform_dictionary[i] = transform1;
 	}
-
+	
 
 
 
@@ -264,10 +262,26 @@ void BNS_MultipleScene_UI::DrawUI()
 void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 {
 	// create the object
+	std::vector<P3_Transforms> unused;
+	std::vector<P3_Transforms> used;
+	
+	for(int i = 0 ; i < 25; i++)
+	{
+		
+		int randomNumber = rand() % unused.size();
+
+		used.emplace_back(unused[randomNumber]);
+		unused.erase(unused.begin() + randomNumber);
+	}
+
+	
+
 	BNS_AGameObject *objectToCreate = nullptr;
 	switch(objectID->objectType)
 	{
+
 	case P3_ObjectType::TEAPOT:
+
 		objectToCreate = PC_instance->CreateTeapot({0,0,0}, objectID->scale, true);
 		break;
 	case P3_ObjectType::STATUE:

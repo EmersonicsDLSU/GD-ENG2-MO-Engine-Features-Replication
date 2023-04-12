@@ -74,7 +74,7 @@ public:
 	bool isProgressViewed = false;
 };
 
-struct P3_Tranforms
+struct P3_Transforms
 {
 public:
 	Vector3D pos;
