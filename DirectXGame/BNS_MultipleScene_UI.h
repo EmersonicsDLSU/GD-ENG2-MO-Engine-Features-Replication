@@ -27,6 +27,8 @@ private:
 	void OnEntryLeftClick(int i);
 	void OnEntryRightClick(int index);
 	void ResetAllButtonsView();
+	void ResetAllButtonsProgressView();
+	void ShowProgressBar(int index);
 };
 
 

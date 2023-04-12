@@ -127,6 +127,7 @@ void BNS_MultipleScene_UI::DrawUI()
 
 		OnEntryLeftClick(i);
 		OnEntryRightClick(i);
+		ShowProgressBar(i);
 
 		ImGui::PopStyleColor(3); // restore default colors
 
@@ -149,6 +150,12 @@ void BNS_MultipleScene_UI::DrawUI()
 	if (ImGui::Button("View All", ImVec2(100, 50)))
 	{
 		// view all scenes
+		for (int index = 0; index < 5; ++index)
+		{
+			if (PC_instance->sceneStatusDictionary[index]->isLoading) break;
+
+			PC_instance->LoadAScene(index, this);
+		}
 	}
 
 	ImGui::End();
@@ -203,7 +210,12 @@ void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 	{
 		for (int i = 0; i < 5; ++i)
 		{
-			if (PC_instance->sceneStatusDictionary[i]->isLoading) return;
+			if (PC_instance->sceneStatusDictionary[i]->isLoading)
+			{
+				ResetAllButtonsProgressView();
+				PC_instance->sceneStatusDictionary[i]->isProgressViewed = true;
+				break;
+			}
 
 			if (index == i && PC_instance->sceneStatusDictionary[i]->isEmpty)
 			{
@@ -252,5 +264,40 @@ void BNS_MultipleScene_UI::ResetAllButtonsView()
 	for (int i = 0; i < 5; ++i)
 	{
 		PC_instance->sceneStatusDictionary[i]->isViewed = false;
+	}
+}
+
+void BNS_MultipleScene_UI::ResetAllButtonsProgressView()
+{
+	for (int i = 0; i < 5; ++i)
+	{
+		PC_instance->sceneStatusDictionary[i]->isProgressViewed = false;
+	}
+}
+
+void BNS_MultipleScene_UI::ShowProgressBar(int index)
+{
+	// show progress bar when loading icon is clicked
+	if (PC_instance->sceneStatusDictionary[index]->isProgressViewed)
+	{
+		ImGui::OpenPopup("Progress");
+		if (ImGui::BeginPopup("Progress")) {
+			// Calculate progress value
+			float progress = (float)PC_instance->sceneObjectDictionary[index].size() /
+				(float)PC_instance->maxPopulation;
+			if (progress >= 1.0f) {
+				// Close progress window
+				ImGui::CloseCurrentPopup();
+				PC_instance->sceneStatusDictionary[index]->isProgressViewed = false;
+				progress = 0.0f;
+			}
+			else {
+				// Draw progress bar
+				ImGui::ProgressBar(progress * 100.0f);
+				std::cout << "Show Progress Bar" << std::endl;
+			}
+
+			ImGui::EndPopup();
+		}
 	}
 }

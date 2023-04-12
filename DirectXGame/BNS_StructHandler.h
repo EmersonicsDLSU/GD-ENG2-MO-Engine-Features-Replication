@@ -71,6 +71,7 @@ public:
 	bool isComplete = false;
 	bool isLoading = false;
 	bool isViewed = false;
+	bool isProgressViewed = false;
 };
 
 class BNS_StructHandler
