@@ -410,13 +410,16 @@
     <ClCompile Include="PoolWorkerThread.cpp">
       <Filter>GameEngine\Threads</Filter>
     </ClCompile>
-    <ClCompile Include="StreamAssetLoader.cpp">
+    <ClCompile Include="SceneLoader.cpp">
       <Filter>GameEngine\Threads</Filter>
     </ClCompile>
     <ClCompile Include="ThreadPool.cpp">
       <Filter>GameEngine\Threads</Filter>
     </ClCompile>
     <ClCompile Include="P3_ObjectID.cpp" />
+    <ClCompile Include="AllSceneLoader.cpp">
+      <Filter>GameEngine\Threads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BNS_AppWindow.h">
@@ -696,13 +699,16 @@
     <ClInclude Include="PoolWorkerThread.h">
       <Filter>GameEngine\Threads</Filter>
     </ClInclude>
-    <ClInclude Include="StreamAssetLoader.h">
+    <ClInclude Include="SceneLoader.h">
       <Filter>GameEngine\Threads</Filter>
     </ClInclude>
     <ClInclude Include="ThreadPool.h">
       <Filter>GameEngine\Threads</Filter>
     </ClInclude>
     <ClInclude Include="P3_ObjectID.h" />
+    <ClInclude Include="AllSceneLoader.h">
+      <Filter>GameEngine\Threads</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="BNS_PixelTex.hlsl">

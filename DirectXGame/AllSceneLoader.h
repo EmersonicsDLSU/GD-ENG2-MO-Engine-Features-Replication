@@ -4,13 +4,13 @@
 
 class IExecutionEvent;
 
-class StreamAssetLoader : public IWorkerAction
+class AllSceneLoader : public IWorkerAction
 {
 private:
 	typedef std::string String;
 public:
-	StreamAssetLoader(int sceneIndex, IExecutionEvent* executionEvent);
-	~StreamAssetLoader();
+	AllSceneLoader(IExecutionEvent* executionEvent);
+	~AllSceneLoader();
 private:
 	void OnStartTask() override;
 

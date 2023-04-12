@@ -16,6 +16,7 @@ public:
 	~BNS_MultipleScene_UI();
 
 	void onExecute(int sceneIndex);
+	void onExecuteAll();
 	void DrawUI() override;
 private:
 	BNS_PrimitiveCreation* PC_instance;
@@ -34,7 +35,6 @@ private:
 	void ResetAllButtonsView();
 	void ResetAllButtonsProgressView();
 	void ShowProgressBar(int index);
-	void OnViewAll();
 };
 
 

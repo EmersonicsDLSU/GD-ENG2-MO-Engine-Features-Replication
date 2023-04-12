@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AllSceneLoader.cpp" />
     <ClCompile Include="BNS_ActionHistory.cpp" />
     <ClCompile Include="BNS_AComponent.cpp" />
     <ClCompile Include="BNS_AppWindow.cpp" />
@@ -235,11 +236,12 @@
     <ClCompile Include="PoolWorkerThread.cpp" />
     <ClCompile Include="SceneReader.cpp" />
     <ClCompile Include="SceneWriter.cpp" />
-    <ClCompile Include="StreamAssetLoader.cpp" />
+    <ClCompile Include="SceneLoader.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AllSceneLoader.h" />
     <ClInclude Include="BNS_ActionHistory.h" />
     <ClInclude Include="BNS_AComponent.h" />
     <ClInclude Include="BNS_ASystem.h" />
@@ -325,7 +327,7 @@
     <ClInclude Include="PoolWorkerThread.h" />
     <ClInclude Include="SceneReader.h" />
     <ClInclude Include="SceneWriter.h" />
-    <ClInclude Include="StreamAssetLoader.h" />
+    <ClInclude Include="SceneLoader.h" />
     <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Vector2D.h" />

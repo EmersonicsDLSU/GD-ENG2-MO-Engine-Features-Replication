@@ -85,6 +85,35 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 	}
 }
 
+void BNS_MultipleScene_UI::onExecuteAll()
+{
+	while (true)
+	{
+		// view all scenes
+		for (int index = 0; index < 5; ++index)
+		{
+			// if the scene is currently loading or already complete its loading; then check next scene
+			if (PC_instance->sceneStatusDictionary[index]->isLoading ||
+				PC_instance->sceneStatusDictionary[index]->isComplete) continue;
+
+			PC_instance->LoadAScene(index, this);
+		}
+
+		// it needs 5 keys
+		for (int i = 0; i < 5; i++)
+		{
+			showAllSem->acquire();
+		}
+
+		for (int index = 0; index < 5; ++index)
+		{
+			PC_instance->sceneStatusDictionary[index]->isViewed = true;
+		}
+		PC_instance->ShowAll();
+		break;
+	}
+}
+
 void BNS_MultipleScene_UI::DrawUI()
 {
 
@@ -157,7 +186,7 @@ void BNS_MultipleScene_UI::DrawUI()
 
 	if (ImGui::Button("View All", ImVec2(100, 50)))
 	{
-		OnViewAll();
+		PC_instance->LoadAllScene(this);
 	}
 
 	ImGui::End();
@@ -216,7 +245,7 @@ void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 			{
 				ResetAllButtonsProgressView();
 				PC_instance->sceneStatusDictionary[i]->isProgressViewed = true;
-				std::cout << "Progress Viewed" << std::endl;
+				std::cout << "Progress Viewed" << index << std::endl;
 				continue;
 			}
 
@@ -288,7 +317,6 @@ void BNS_MultipleScene_UI::ShowProgressBar(int index)
 		float progress = (float)PC_instance->sceneObjectDictionary[index].size() /
 			(float)PC_instance->maxPopulation;
 
-		std::cout << "Progress: " << progress << std::endl;
 		if (progress >= 1.0f) {
 			// Close progress window
 			ImGui::CloseCurrentPopup();
@@ -300,33 +328,7 @@ void BNS_MultipleScene_UI::ShowProgressBar(int index)
 			// Draw progress bar
 			ImGui::Text("Scene: %d", index + 1);
 			ImGui::ProgressBar(progress, ImVec2(-1, 0), (std::to_string(progress * 100.0f) + "%").c_str());
-			std::cout << "Show Progress Bar" << std::endl;
 			ImGui::End();
 		}
 	}
-}
-
-void BNS_MultipleScene_UI::OnViewAll()
-{
-	// view all scenes
-	for (int index = 0; index < 5; ++index)
-	{
-		// if the scene is currently loading or already complete its loading; then check next scene
-		if (PC_instance->sceneStatusDictionary[index]->isLoading || 
-			PC_instance->sceneStatusDictionary[index]->isComplete) continue;
-
-		PC_instance->LoadAScene(index, this);
-	}
-
-	// it needs 5 keys
-	for (int i = 0; i < 5; i++)
-	{
-		showAllSem->acquire();
-	}
-
-	for (int index = 0; index < 5; ++index)
-	{
-		PC_instance->sceneStatusDictionary[index]->isViewed = true;
-	}
-	PC_instance->ShowAll();
 }
