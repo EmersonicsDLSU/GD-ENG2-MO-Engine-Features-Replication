@@ -9,6 +9,7 @@
 #include <mutex>
 
 
+struct P3_Transforms;
 struct P3_Tranforms;
 class P3_ObjectID;
 
@@ -33,7 +34,7 @@ public:
 	void ExecuteObject(P3_ObjectID* objectID);
 	void DeleteObjectInScene(int sceneIndex);
 
-	using TransformDictionary = std::map<int, std::vector<P3_Tranforms>>;
+	using TransformDictionary = std::map<int, std::vector<P3_Transforms>>;
 	TransformDictionary transform_dictionary;
 private:
 	void OnEntryLeftClick(int i);
