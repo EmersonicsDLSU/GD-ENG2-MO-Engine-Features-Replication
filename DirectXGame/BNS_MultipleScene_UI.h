@@ -16,6 +16,7 @@ public:
 	void onExecute(int sceneIndex);
 	void DrawUI() override;
 private:
+	BNS_PrimitiveCreation* PC_instance;
 	bool active;
 public:
 	std::vector<P3_ObjectID*> objectsToLoad;
@@ -24,7 +25,8 @@ public:
 	void DeleteObjectInScene(int sceneIndex);
 private:
 	void OnEntryLeftClick(int i);
-	void OnEntryRightClick(int i);
+	void OnEntryRightClick(int index);
+	void ResetAllButtonsView();
 };
 
 

@@ -71,7 +71,9 @@ public:
 	ThreadPool* threadPool;
 	const int maxPopulation = 1;
 	using SceneObjectDictionary = std::map<int, std::vector<BNS_AGameObject*>>;
+	using SceneStatusDictionary = std::map<int, P3_SceneStatus*>;
 	SceneObjectDictionary sceneObjectDictionary;
+	SceneStatusDictionary sceneStatusDictionary;
 
 	void ShowScene(int sceneIndex);
 	void ResetScene(int sceneIndex);

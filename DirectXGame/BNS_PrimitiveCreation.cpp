@@ -43,6 +43,9 @@ BNS_PrimitiveCreation::BNS_PrimitiveCreation()
 	{
 		std::vector<BNS_AGameObject*> sceneObjects;
 		sceneObjectDictionary[i] = sceneObjects;
+
+		P3_SceneStatus* sceneStatus = new P3_SceneStatus();
+		sceneStatusDictionary[i] = sceneStatus;
 	}
 
 
@@ -837,6 +840,10 @@ void BNS_PrimitiveCreation::ResetScene(int sceneIndex)
 	}
 	sceneObjectDictionary[sceneIndex].clear();
 	sceneObjectDictionary[sceneIndex].shrink_to_fit();
+
+	// set the scene status
+	sceneStatusDictionary[sceneIndex]->isEmpty = true;
+	sceneStatusDictionary[sceneIndex]->isComplete = false;
 }
 
 void BNS_PrimitiveCreation::ShowAll()
@@ -868,6 +875,9 @@ void BNS_PrimitiveCreation::HideAll()
 // This is called by a class(inherited by IExecutionEvent) that calls a function(switch 5 cases) to process the scene
 void BNS_PrimitiveCreation::LoadAScene(int index, IExecutionEvent* executionEvent)
 {
+	// set the scene status to be loading
+	sceneStatusDictionary[index]->isLoading = true;
+
 	StreamAssetLoader* assetLoader = new StreamAssetLoader(index, executionEvent);
 
 	threadPool->ScheduleTask(assetLoader);

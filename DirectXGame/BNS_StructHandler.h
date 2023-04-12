@@ -64,6 +64,14 @@ public:
 	float aspectRatio = BNS_UIManager::WINDOW_WIDTH / BNS_UIManager::WINDOW_HEIGHT;
 };
 
+struct P3_SceneStatus
+{
+public:
+	bool isEmpty = true;
+	bool isComplete = false;
+	bool isLoading = false;
+	bool isViewed = false;
+};
 
 class BNS_StructHandler
 {

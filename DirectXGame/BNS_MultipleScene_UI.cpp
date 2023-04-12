@@ -8,6 +8,8 @@
 
 BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUIScreen(name, ID)
 {
+	PC_instance = BNS_PrimitiveCreation::Instance();
+
 	// Objects in SCENE 1
 	P3_ObjectID *obj_1 = new P3_ObjectID(0, P3_ObjectType::TEAPOT, 0);
 	objectsToLoad.emplace_back(obj_1);
@@ -64,7 +66,14 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 			objectsOnScene.emplace_back(objectWithSceneIndex);
 		}
 		// if there's no more object to execute, then we break this thread
-		else break;
+		else
+		{
+			// set the scene status
+			PC_instance->sceneStatusDictionary[sceneIndex]->isEmpty = false;
+			PC_instance->sceneStatusDictionary[sceneIndex]->isLoading = false;
+			PC_instance->sceneStatusDictionary[sceneIndex]->isComplete = true;
+			break;
+		}
 	}
 }
 
@@ -90,22 +99,36 @@ void BNS_MultipleScene_UI::DrawUI()
 	for (int i = 0; i < 5; ++i)
 	{
 		ImGui::PushID(i);
-		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.5f, 0.5f, 0.5f, 0.5f)); // set button color to grey with alpha
+		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.5f, 0.5f, 0.5f, 0.5f));
+		ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.5f, 0.5f, 0.5f, 0.5f));
 
 		// Get the button position and size
 		ImVec2 pos = ImGui::GetCursorScreenPos();
 		ImVec2 size = { thumbnailSize, thumbnailSize };
 		// Draw the button
 		ImGui::GetWindowDrawList()->AddRectFilled(pos, { pos.x + size.x, pos.y + size.y }, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
-		
-		
+
+		// button state
+		bool buttonDisabled = !PC_instance->sceneStatusDictionary[i]->isEmpty;
+		if (PC_instance->sceneStatusDictionary[i]->isComplete)
+		{
+			buttonDisabled = PC_instance->sceneStatusDictionary[i]->isViewed;
+		}
+		else if (!PC_instance->sceneStatusDictionary[i]->isComplete && PC_instance->sceneStatusDictionary[i]->isLoading)
+		{
+			buttonDisabled = true;
+		}
 		ImGui::ImageButton((void*)icon.get()->GetShaderResourceView(),
-			{ thumbnailSize, thumbnailSize }, { -1, 0 }, { 0,1 });
+			{ thumbnailSize, thumbnailSize }, { -1, 0 }, { 0,1 },
+			-1, ImVec4(1.0f, 1.0f, 1.0f, 0.5f),
+			buttonDisabled ? ImVec4(0.5f, 0.5f, 0.5f, 0.5f)
+			: ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
 
 		OnEntryLeftClick(i);
 		OnEntryRightClick(i);
 
-		ImGui::PopStyleColor();
+		ImGui::PopStyleColor(3); // restore default colors
 
 		// Get the text size
 		ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[0]);
@@ -114,8 +137,8 @@ void BNS_MultipleScene_UI::DrawUI()
 		// Calculate the text position
 		ImVec2 textPos = { pos.x + (size.x - textSize.x) / 2.0f, pos.y + (size.y - textSize.y) / 2.0f };
 		// Draw the text overlay
-		float percentage = (float)BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[i].size() / 
-			(float)BNS_PrimitiveCreation::Instance()->maxPopulation;
+		float percentage = (float)PC_instance->sceneObjectDictionary[i].size() / 
+			(float)PC_instance->maxPopulation;
 		std::string percentageStr = std::to_string(static_cast<int>(percentage * 100.0f)) + "%";
 		ImGui::GetWindowDrawList()->AddText(textPos, ImGui::GetColorU32(ImGuiCol_Text), percentageStr.c_str());
 
@@ -138,24 +161,24 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	switch(objectID->objectType)
 	{
 	case P3_ObjectType::TEAPOT:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateTeapot({0,0,0}, objectID->scale, true);
+		objectToCreate = PC_instance->CreateTeapot({0,0,0}, objectID->scale, true);
 		break;
 	case P3_ObjectType::STATUE:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateStatue({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateStatue({ 0,0,0 }, objectID->scale, true);
 		break;
 	case P3_ObjectType::BUNNY:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateBunny({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateBunny({ 0,0,0 }, objectID->scale, true);
 		break;
 	case P3_ObjectType::ARMADILLO:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateArmadillo({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateArmadillo({ 0,0,0 }, objectID->scale, true);
 		break;
 	case P3_ObjectType::EARTH:
-		objectToCreate = BNS_PrimitiveCreation::Instance()->CreateEarth({ 0,0,0 }, objectID->scale, true);
+		objectToCreate = PC_instance->CreateEarth({ 0,0,0 }, objectID->scale, true);
 		break;
 	}
 	objectToCreate->SetActive(false);
 	// add it to the sceneObjectDictionary
-	BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[objectID->sceneIndex].emplace_back(objectToCreate);
+	PC_instance->sceneObjectDictionary[objectID->sceneIndex].emplace_back(objectToCreate);
 }
 
 void BNS_MultipleScene_UI::DeleteObjectInScene(int sceneIndex)
@@ -174,61 +197,29 @@ void BNS_MultipleScene_UI::DeleteObjectInScene(int sceneIndex)
 	}
 }
 
-void BNS_MultipleScene_UI::OnEntryLeftClick(int i)
+void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 {
-	bool isEmpty = true, isComplete = false;
-	if (BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[i].size() != 0)
-		isEmpty = false;
-	if (BNS_PrimitiveCreation::Instance()->sceneObjectDictionary[i].size() == BNS_PrimitiveCreation::Instance()->maxPopulation)
-		isComplete = true;
-
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 	{
-		// if not yet
-		if (i == 0 && isEmpty)
+		for (int i = 0; i < 5; ++i)
 		{
-			BNS_PrimitiveCreation::Instance()->LoadAScene(0, this);
-		}
-		else if (i == 0 && isComplete)
-		{
-			BNS_PrimitiveCreation::Instance()->ShowScene(0);
-		}
-		else if (i == 1 && isEmpty)
-		{
-			BNS_PrimitiveCreation::Instance()->LoadAScene(1, this);
-		}
-		else if (i == 1 && isComplete)
-		{
-			BNS_PrimitiveCreation::Instance()->ShowScene(1);
-		}
-		else if (i == 2 && isEmpty)
-		{
-			BNS_PrimitiveCreation::Instance()->LoadAScene(2, this);
-		}
-		else if (i == 2 && isComplete)
-		{
-			BNS_PrimitiveCreation::Instance()->ShowScene(2);
-		}
-		else if (i == 3 && isEmpty)
-		{
-			BNS_PrimitiveCreation::Instance()->LoadAScene(3, this);
-		}
-		else if (i == 3 && isComplete)
-		{
-			BNS_PrimitiveCreation::Instance()->ShowScene(3);
-		}
-		else if (i == 4 && isEmpty)
-		{
-			BNS_PrimitiveCreation::Instance()->LoadAScene(4, this);
-		}
-		else if (i == 4 && isComplete)
-		{
-			BNS_PrimitiveCreation::Instance()->ShowScene(4);
+			if (PC_instance->sceneStatusDictionary[i]->isLoading) return;
+
+			if (index == i && PC_instance->sceneStatusDictionary[i]->isEmpty)
+			{
+				PC_instance->LoadAScene(index, this);
+			}
+			else if (index == i && PC_instance->sceneStatusDictionary[i]->isComplete)
+			{
+				ResetAllButtonsView();
+				PC_instance->sceneStatusDictionary[i]->isViewed = true;
+				PC_instance->ShowScene(index);
+			}
 		}
 	}
 }
 
-void BNS_MultipleScene_UI::OnEntryRightClick(int i)
+void BNS_MultipleScene_UI::OnEntryRightClick(int index)
 {
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 	{
@@ -242,33 +233,24 @@ void BNS_MultipleScene_UI::OnEntryRightClick(int i)
 	{
 		if (ImGui::Button("X", ImVec2(25, 25)))
 		{
-			if (i == 0)
+			for (int i = 0; i < 5; ++i)
 			{
-				DeleteObjectInScene(0);
-				BNS_PrimitiveCreation::Instance()->ResetScene(0);
-			}
-			else if (i == 1)
-			{
-				DeleteObjectInScene(1);
-				BNS_PrimitiveCreation::Instance()->ResetScene(1);
-			}
-			else if (i == 2)
-			{
-				DeleteObjectInScene(2);
-				BNS_PrimitiveCreation::Instance()->ResetScene(2);
-			}
-			else if (i == 3)
-			{
-				DeleteObjectInScene(3);
-				BNS_PrimitiveCreation::Instance()->ResetScene(3);
-			}
-			else if (i == 4)
-			{
-				DeleteObjectInScene(4);
-				BNS_PrimitiveCreation::Instance()->ResetScene(4);
+				if (index == i)
+				{
+					DeleteObjectInScene(index);
+					PC_instance->ResetScene(index);
+				}
 			}
 			ImGui::CloseCurrentPopup();
 		}
 		ImGui::EndPopup();
+	}
+}
+
+void BNS_MultipleScene_UI::ResetAllButtonsView()
+{
+	for (int i = 0; i < 5; ++i)
+	{
+		PC_instance->sceneStatusDictionary[i]->isViewed = false;
 	}
 }
