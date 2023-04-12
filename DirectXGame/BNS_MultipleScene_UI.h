@@ -34,8 +34,9 @@ public:
 	void ExecuteObject(P3_ObjectID* objectID);
 	void DeleteObjectInScene(int sceneIndex);
 
-	using TransformDictionary = std::map<int, std::vector<P3_Transforms>>;
-	TransformDictionary transform_dictionary;
+	std::vector<P3_Transforms> unused;
+	std::vector<P3_Transforms> used;
+	
 private:
 	void OnEntryLeftClick(int i);
 	void OnEntryRightClick(int index);

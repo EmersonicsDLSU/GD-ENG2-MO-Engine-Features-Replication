@@ -12,13 +12,13 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 	
 	for(int i = 0 ; i < 5; i++)
 	{
-		std::vector<P3_Transforms> transform1;
+		
 		for(int j = 0; j < 5; j++)
 		{
 			P3_Transforms trans_1 = { Vector3D( -5 + (5 * j) + i,-5 + (5 * j)+ i,-5 + (5 * j)+ i),false};
-			transform1.emplace_back(trans_1);
+			unused.emplace_back(trans_1);
 		}
-		transform_dictionary[i] = transform1;
+		
 	}
 	
 
@@ -262,8 +262,7 @@ void BNS_MultipleScene_UI::DrawUI()
 void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 {
 	// create the object
-	std::vector<P3_Transforms> unused;
-	std::vector<P3_Transforms> used;
+	
 	
 	for(int i = 0 ; i < 25; i++)
 	{
