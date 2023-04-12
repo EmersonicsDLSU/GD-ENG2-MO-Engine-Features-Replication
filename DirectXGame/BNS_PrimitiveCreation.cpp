@@ -15,7 +15,8 @@
 #include "BNS_SkyBox.h"
 #include "BNS_TransformComponent.h"
 #include "BNS_MathUtils.h"
-#include "StreamAssetLoader.h"
+#include "SceneLoader.h"
+#include "AllSceneLoader.h"
 #include "ThreadPool.h"
 
 BNS_PrimitiveCreation* BNS_PrimitiveCreation::sharedInstance = nullptr;
@@ -1298,7 +1299,14 @@ void BNS_PrimitiveCreation::LoadAScene(int index, IExecutionEvent* executionEven
 	// set the scene status to be loading
 	sceneStatusDictionary[index]->isLoading = true;
 
-	StreamAssetLoader* assetLoader = new StreamAssetLoader(index, executionEvent);
+	SceneLoader* sceneLoader = new SceneLoader(index, executionEvent);
 
-	threadPool->ScheduleTask(assetLoader);
+	threadPool->ScheduleTask(sceneLoader);
+}
+
+void BNS_PrimitiveCreation::LoadAllScene(IExecutionEvent* executionEvent)
+{
+	AllSceneLoader* sceneLoader = new AllSceneLoader(executionEvent);
+
+	threadPool->ScheduleTask(sceneLoader);
 }

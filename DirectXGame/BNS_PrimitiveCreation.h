@@ -92,7 +92,7 @@ private:
 	// FOR P3
 public:
 	ThreadPool* threadPool;
-	const int maxPopulation = 1;
+	const int maxPopulation = 5;
 	using SceneObjectDictionary = std::map<int, std::vector<BNS_AGameObject*>>;
 	using SceneStatusDictionary = std::map<int, P3_SceneStatus*>;
 	SceneObjectDictionary sceneObjectDictionary;
@@ -103,5 +103,6 @@ public:
 	void ShowAll();
 	void HideAll();
 	void LoadAScene(int index, IExecutionEvent* executionEvent);
+	void LoadAllScene(IExecutionEvent* executionEvent);
 };
 

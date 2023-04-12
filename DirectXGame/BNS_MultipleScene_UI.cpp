@@ -15,19 +15,39 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 	showAllSem = new std::counting_semaphore<5>(0);
 
 	// Objects in SCENE 1
-	P3_ObjectID *obj_1 = new P3_ObjectID(0, P3_ObjectType::TEAPOT, 0);
+	P3_ObjectID* obj_1 = new P3_ObjectID(0, P3_ObjectType::TEAPOT, 0);
+	P3_ObjectID* obj_2 = new P3_ObjectID(0, P3_ObjectType::CHARMANDER, 0);
+	P3_ObjectID* obj_3 = new P3_ObjectID(0, P3_ObjectType::CUBONE, 0);
+	P3_ObjectID* obj_4 = new P3_ObjectID(0, P3_ObjectType::EEVEE, 0);
+	P3_ObjectID *obj_5 = new P3_ObjectID(0, P3_ObjectType::FARFETCH, 0);
 	objectsToLoad.emplace_back(obj_1);
 	// Objects in SCENE 2
-	P3_ObjectID* obj_2 = new P3_ObjectID(1, P3_ObjectType::STATUE, 1);
+	P3_ObjectID* obj_6 = new P3_ObjectID(1, P3_ObjectType::STATUE, 1);
+	P3_ObjectID* obj_7 = new P3_ObjectID(1, P3_ObjectType::MACHOP, 1);
+	P3_ObjectID* obj_8 = new P3_ObjectID(1, P3_ObjectType::NIDORANF, 1);
+	P3_ObjectID* obj_9 = new P3_ObjectID(1, P3_ObjectType::NIDORANM, 1);
+	P3_ObjectID* obj_10 = new P3_ObjectID(1, P3_ObjectType::ODDISH, 1);
 	objectsToLoad.emplace_back(obj_2);
 	// Objects in SCENE 3
-	P3_ObjectID* obj_3 = new P3_ObjectID(2, P3_ObjectType::BUNNY, 2);
+	P3_ObjectID* obj_11 = new P3_ObjectID(2, P3_ObjectType::BUNNY, 2);
+	P3_ObjectID* obj_12 = new P3_ObjectID(2, P3_ObjectType::PIKACHU, 2);
+	P3_ObjectID* obj_13 = new P3_ObjectID(2, P3_ObjectType::GROWLITHE, 2);
+	P3_ObjectID* obj_14 = new P3_ObjectID(2, P3_ObjectType::PIDGEY, 2);
+	P3_ObjectID* obj_15 = new P3_ObjectID(2, P3_ObjectType::POLIWAG, 2);
 	objectsToLoad.emplace_back(obj_3);
 	// Objects in SCENE 4
-	P3_ObjectID* obj_4 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
+	P3_ObjectID* obj_16 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
+	P3_ObjectID* obj_17 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
+	P3_ObjectID* obj_18 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
+	P3_ObjectID* obj_19 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
+	P3_ObjectID* obj_20 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
 	objectsToLoad.emplace_back(obj_4);
 	// Objects in SCENE 5
-	P3_ObjectID* obj_5 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
+	P3_ObjectID* obj_21 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
+	P3_ObjectID* obj_22 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
+	P3_ObjectID* obj_23 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
+	P3_ObjectID* obj_24 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
+	P3_ObjectID* obj_25 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
 	objectsToLoad.emplace_back(obj_5);
 }
 
@@ -246,9 +266,11 @@ void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 				ResetAllButtonsProgressView();
 				PC_instance->sceneStatusDictionary[i]->isProgressViewed = true;
 				std::cout << "Progress Viewed" << index << std::endl;
-				continue;
+				break;
 			}
-
+		}
+		for (int i = 0; i < 5; ++i)
+		{
 			if (index == i && PC_instance->sceneStatusDictionary[i]->isEmpty)
 			{
 				std::cout << "Load Scene" << std::endl;
