@@ -264,14 +264,13 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	// create the object
 	
 	
-	for(int i = 0 ; i < 25; i++)
-	{
+	
 		
 		int randomNumber = rand() % unused.size();
 
 		used.emplace_back(unused[randomNumber]);
 		unused.erase(unused.begin() + randomNumber);
-	}
+	
 
 	
 
