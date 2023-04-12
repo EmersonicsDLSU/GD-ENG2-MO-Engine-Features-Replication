@@ -16,38 +16,38 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 
 	// Objects in SCENE 1
 	P3_ObjectID* obj_1 = new P3_ObjectID(0, P3_ObjectType::TEAPOT, 0);
-	P3_ObjectID* obj_2 = new P3_ObjectID(0, P3_ObjectType::CHARMANDER, 0);
-	P3_ObjectID* obj_3 = new P3_ObjectID(0, P3_ObjectType::CUBONE, 0);
-	P3_ObjectID* obj_4 = new P3_ObjectID(0, P3_ObjectType::EEVEE, 0);
-	P3_ObjectID *obj_5 = new P3_ObjectID(0, P3_ObjectType::FARFETCH, 0);
+	P3_ObjectID* obj_2 = new P3_ObjectID(1, P3_ObjectType::CHARMANDER, 0);
+	P3_ObjectID* obj_3 = new P3_ObjectID(2, P3_ObjectType::CUBONE, 0);
+	P3_ObjectID* obj_4 = new P3_ObjectID(3, P3_ObjectType::EEVEE, 0);
+	P3_ObjectID *obj_5 = new P3_ObjectID(4, P3_ObjectType::FARFETCH, 0);
 	objectsToLoad.emplace_back(obj_1);
 	// Objects in SCENE 2
-	P3_ObjectID* obj_6 = new P3_ObjectID(1, P3_ObjectType::STATUE, 1);
-	P3_ObjectID* obj_7 = new P3_ObjectID(1, P3_ObjectType::MACHOP, 1);
-	P3_ObjectID* obj_8 = new P3_ObjectID(1, P3_ObjectType::NIDORANF, 1);
-	P3_ObjectID* obj_9 = new P3_ObjectID(1, P3_ObjectType::NIDORANM, 1);
-	P3_ObjectID* obj_10 = new P3_ObjectID(1, P3_ObjectType::ODDISH, 1);
+	P3_ObjectID* obj_6 = new P3_ObjectID(5, P3_ObjectType::STATUE, 1);
+	P3_ObjectID* obj_7 = new P3_ObjectID(6, P3_ObjectType::MACHOP, 1);
+	P3_ObjectID* obj_8 = new P3_ObjectID(7, P3_ObjectType::NIDORANF, 1);
+	P3_ObjectID* obj_9 = new P3_ObjectID(8, P3_ObjectType::NIDORANM, 1);
+	P3_ObjectID* obj_10 = new P3_ObjectID(9, P3_ObjectType::ODDISH, 1);
 	objectsToLoad.emplace_back(obj_2);
 	// Objects in SCENE 3
-	P3_ObjectID* obj_11 = new P3_ObjectID(2, P3_ObjectType::BUNNY, 2);
-	P3_ObjectID* obj_12 = new P3_ObjectID(2, P3_ObjectType::PIKACHU, 2);
-	P3_ObjectID* obj_13 = new P3_ObjectID(2, P3_ObjectType::GROWLITHE, 2);
-	P3_ObjectID* obj_14 = new P3_ObjectID(2, P3_ObjectType::PIDGEY, 2);
-	P3_ObjectID* obj_15 = new P3_ObjectID(2, P3_ObjectType::POLIWAG, 2);
+	P3_ObjectID* obj_11 = new P3_ObjectID(10, P3_ObjectType::BUNNY, 2);
+	P3_ObjectID* obj_12 = new P3_ObjectID(11, P3_ObjectType::PIKACHU, 2);
+	P3_ObjectID* obj_13 = new P3_ObjectID(12, P3_ObjectType::GROWLITHE, 2);
+	P3_ObjectID* obj_14 = new P3_ObjectID(13, P3_ObjectType::PIDGEY, 2);
+	P3_ObjectID* obj_15 = new P3_ObjectID(14, P3_ObjectType::POLIWAG, 2);
 	objectsToLoad.emplace_back(obj_3);
 	// Objects in SCENE 4
-	P3_ObjectID* obj_16 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
-	P3_ObjectID* obj_17 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
-	P3_ObjectID* obj_18 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
-	P3_ObjectID* obj_19 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
-	P3_ObjectID* obj_20 = new P3_ObjectID(3, P3_ObjectType::ARMADILLO, 3);
+	P3_ObjectID* obj_16 = new P3_ObjectID(15, P3_ObjectType::ARMADILLO, 3);
+	P3_ObjectID* obj_17 = new P3_ObjectID(16, P3_ObjectType::JIGGLYPUFF, 3);
+	P3_ObjectID* obj_18 = new P3_ObjectID(17, P3_ObjectType::SNORLAX, 3);
+	P3_ObjectID* obj_19 = new P3_ObjectID(18, P3_ObjectType::DITTO, 3);
+	P3_ObjectID* obj_20 = new P3_ObjectID(19, P3_ObjectType::GENGAR, 3);
 	objectsToLoad.emplace_back(obj_4);
 	// Objects in SCENE 5
-	P3_ObjectID* obj_21 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
-	P3_ObjectID* obj_22 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
-	P3_ObjectID* obj_23 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
-	P3_ObjectID* obj_24 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
-	P3_ObjectID* obj_25 = new P3_ObjectID(4, P3_ObjectType::EARTH, 4);
+	P3_ObjectID* obj_21 = new P3_ObjectID(20, P3_ObjectType::EARTH, 4);
+	P3_ObjectID* obj_22 = new P3_ObjectID(21, P3_ObjectType::PSYDUCK, 4);
+	P3_ObjectID* obj_23 = new P3_ObjectID(22, P3_ObjectType::SEEL, 4);
+	P3_ObjectID* obj_24 = new P3_ObjectID(23, P3_ObjectType::SQUIRTLE, 4);
+	P3_ObjectID* obj_25 = new P3_ObjectID(24, P3_ObjectType::VULPIX, 4);
 	objectsToLoad.emplace_back(obj_5);
 }
 
@@ -233,6 +233,70 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	case P3_ObjectType::EARTH:
 		objectToCreate = PC_instance->CreateEarth({ 0,0,0 }, objectID->scale, true);
 		break;
+
+	case P3_ObjectType::CHARMANDER:
+		objectToCreate = PC_instance->CreateCharmander({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::CUBONE:
+		objectToCreate = PC_instance->CreateCubone({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::EEVEE:
+		objectToCreate = PC_instance->CreateEevee({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::FARFETCH:
+		objectToCreate = PC_instance->CreateFarfetch({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::GROWLITHE:
+		objectToCreate = PC_instance->CreateGrowlithe({ 0,0,0 }, objectID->scale, true);
+		break;
+
+	case P3_ObjectType::MACHOP:
+		objectToCreate = PC_instance->CreateMachop({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::NIDORANF:
+		objectToCreate = PC_instance->CreateNidoranF({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::NIDORANM:
+		objectToCreate = PC_instance->CreateNidoranM({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::ODDISH:
+		objectToCreate = PC_instance->CreateOddish({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::PIDGEY:
+		objectToCreate = PC_instance->CreatePidgey({ 0,0,0 }, objectID->scale, true);
+		break;
+
+	case P3_ObjectType::PIKACHU:
+		objectToCreate = PC_instance->CreatePikachu({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::POLIWAG:
+		objectToCreate = PC_instance->CreatePoliwag({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::PSYDUCK:
+		objectToCreate = PC_instance->CreatePsyduck({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::SEEL:
+		objectToCreate = PC_instance->CreateSeel({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::SQUIRTLE:
+		objectToCreate = PC_instance->CreateSquirtle({ 0,0,0 }, objectID->scale, true);
+		break;
+
+	case P3_ObjectType::VULPIX:
+		objectToCreate = PC_instance->CreateVulpix({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::JIGGLYPUFF:
+		objectToCreate = PC_instance->CreateJigglypuff({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::SNORLAX:
+		objectToCreate = PC_instance->CreateSnorlax({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::DITTO:
+		objectToCreate = PC_instance->CreateDitto({ 0,0,0 }, objectID->scale, true);
+		break;
+	case P3_ObjectType::GENGAR:
+		objectToCreate = PC_instance->CreateGengar({ 0,0,0 }, objectID->scale, true);
+		break;
 	}
 	objectToCreate->SetActive(false);
 	// add it to the sceneObjectDictionary
@@ -259,15 +323,11 @@ void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 {
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 	{
-		for (int i = 0; i < 5; ++i)
+		if (PC_instance->sceneStatusDictionary[index]->isLoading)
 		{
-			if (PC_instance->sceneStatusDictionary[i]->isLoading)
-			{
-				ResetAllButtonsProgressView();
-				PC_instance->sceneStatusDictionary[i]->isProgressViewed = true;
-				std::cout << "Progress Viewed" << index << std::endl;
-				break;
-			}
+			ResetAllButtonsProgressView();
+			PC_instance->sceneStatusDictionary[index]->isProgressViewed = true;
+			std::cout << "Progress Viewed" << index << std::endl;
 		}
 		for (int i = 0; i < 5; ++i)
 		{
@@ -285,7 +345,6 @@ void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 		}
 	}
 }
-
 void BNS_MultipleScene_UI::OnEntryRightClick(int index)
 {
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
