@@ -533,7 +533,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateCharmander(Vector3D pos, Vector3D 
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Charmander.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\charmander.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -554,7 +554,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateCubone(Vector3D pos, Vector3D scal
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Cubone.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\cubone.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -575,7 +575,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateEevee(Vector3D pos, Vector3D scale
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Eevee.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\eevee.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -596,7 +596,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateFarfetch(Vector3D pos, Vector3D sc
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Farfetch'd.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\farfetch.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -617,7 +617,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateGrowlithe(Vector3D pos, Vector3D s
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Growlithe.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\growlithe.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -638,7 +638,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateMachop(Vector3D pos, Vector3D scal
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Machop.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\machop.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -659,7 +659,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateNidoranF(Vector3D pos, Vector3D sc
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\NidoranF.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\nidoranF.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -680,7 +680,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateNidoranM(Vector3D pos, Vector3D sc
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\NidoranM.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\nidoranM.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -701,7 +701,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateOddish(Vector3D pos, Vector3D scal
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Oddish.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\oddish.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -722,7 +722,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreatePidgey(Vector3D pos, Vector3D scal
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Pidgey.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\pidgey.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -743,7 +743,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreatePikachu(Vector3D pos, Vector3D sca
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\PikachuF.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\pikachu.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -764,7 +764,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreatePalkia(Vector3D pos, Vector3D scal
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Palkia.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\palkia.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -785,7 +785,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreatePsyduck(Vector3D pos, Vector3D sca
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Psyduck.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\psyduck.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -806,7 +806,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateSeel(Vector3D pos, Vector3D scale,
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Seel.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\seel.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -827,7 +827,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateSquirtle(Vector3D pos, Vector3D sc
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Squirtle.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\squirtle.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -848,7 +848,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateVulpix(Vector3D pos, Vector3D scal
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Vulpix.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\vulpix.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -869,7 +869,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateJigglypuff(Vector3D pos, Vector3D 
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Jigglypuff.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\jigglypuff.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -890,7 +890,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateGiratina(Vector3D pos, Vector3D sc
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Giratina.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\giratina.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -911,7 +911,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateCyndaquil(Vector3D pos, Vector3D s
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Cyndaquil.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\cyndaquil.png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
@@ -932,7 +932,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateDialga(Vector3D pos, Vector3D scal
 	CheckGameObjectName(name);
 	BNS_Cube* cube = new BNS_Cube(name, BNS_ObjectTypes::CUBE);
 	cube->SetMesh(L"Assets\\obj\\Dialga.obj");
-	cube->SetTexture(L"Assets\\Textures\\brick.png");
+	cube->SetTexture(L"Assets\\dialga\\dialga (1).png");
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
