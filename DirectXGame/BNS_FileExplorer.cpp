@@ -28,6 +28,16 @@ void BNS_FileExplorer::InitializeFiles()
 		BNS_UIManager::m_ui_creation->CreateUI_Image(L"Assets\\Icons\\file_icon.png");
 	imageTable["folder_icon"] =
 		BNS_UIManager::m_ui_creation->CreateUI_Image(L"Assets\\Icons\\folder_icon.png");
+	imageTable["scene_0"] =
+		BNS_UIManager::m_ui_creation->CreateUI_Image(L"Assets\\Icons\\scene_0.png");
+	imageTable["scene_1"] =
+		BNS_UIManager::m_ui_creation->CreateUI_Image(L"Assets\\Icons\\scene_1.png");
+	imageTable["scene_2"] =
+		BNS_UIManager::m_ui_creation->CreateUI_Image(L"Assets\\Icons\\scene_2.png");
+	imageTable["scene_3"] =
+		BNS_UIManager::m_ui_creation->CreateUI_Image(L"Assets\\Icons\\scene_3.png");
+	imageTable["scene_4"] =
+		BNS_UIManager::m_ui_creation->CreateUI_Image(L"Assets\\Icons\\scene_4.png");
 }
 
 BNS_FileExplorer::uiImageHashTable BNS_FileExplorer::GetImageHashTable()

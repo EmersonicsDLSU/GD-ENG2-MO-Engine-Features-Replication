@@ -79,6 +79,7 @@ struct P3_Transforms
 public:
 	Vector3D pos;
 	bool isOccupied = false;
+	int sceneIndex = -1;
 };
 
 class BNS_StructHandler

@@ -16,7 +16,7 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 		
 		for(int j = 0; j < 5; j++)
 		{
-			P3_Transforms trans_1 = { Vector3D( -5 + (5 * j) + i,-5 + (5 * j)+ i,-5 + (5 * j)+ i),false};
+			P3_Transforms *trans_1 = new P3_Transforms{ Vector3D( -5 + (5 * j) + i,-5 + (5 * j)+ i,-5 + (5 * j)+ i)};
 			unused.emplace_back(trans_1);
 		}
 		
@@ -61,7 +61,7 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 		if (containsObject)
 		{
 			mutexSem->acquire();
-			std::cout << "Execute Load Scene: " << sceneIndex << std::endl;
+			//std::cout << "Execute Load Scene: " << sceneIndex << std::endl;
 			// create the object; object is still not active
 			ExecuteObject(objectWithSceneIndex);
 			mutexSem->release();
@@ -93,6 +93,7 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 			PC_instance->sceneStatusDictionary[sceneIndex]->isComplete = true;
 			// release one completed scene
 			showAllSem->release();
+			std::cout << "Semaphore Release!: " << sceneIndex << std::endl;
 			break;
 		}
 	}
@@ -116,6 +117,7 @@ void BNS_MultipleScene_UI::onExecuteAll()
 		for (int i = 0; i < 5; i++)
 		{
 			showAllSem->acquire();
+			std::cout << "Semaphore Acquire!" << std::endl;
 		}
 
 		for (int index = 0; index < 5; ++index)
@@ -123,6 +125,12 @@ void BNS_MultipleScene_UI::onExecuteAll()
 			PC_instance->sceneStatusDictionary[index]->isViewed = true;
 		}
 		PC_instance->ShowAll();
+		for (int i = 0; i < 5; i++)
+		{
+			showAllSem->release();
+			std::cout << "Semaphore Release!" << std::endl;
+		}
+
 		break;
 	}
 }
@@ -142,9 +150,7 @@ void BNS_MultipleScene_UI::DrawUI()
 		columnCount = 1;
 
 	ImGui::Columns(columnCount, 0, false);
-
-	// creates an icon to the file
-	TexturePtr icon = BNS_FileExplorer::GetInstance()->GetImageHashTable()["folder_icon"];
+	
 	
 	for (int i = 0; i < 5; ++i)
 	{
@@ -169,6 +175,9 @@ void BNS_MultipleScene_UI::DrawUI()
 		{
 			buttonDisabled = true;
 		}
+
+		// creates an icon to the file
+		TexturePtr icon = BNS_FileExplorer::GetInstance()->GetImageHashTable()["scene_" + std::to_string(i)];
 		ImGui::ImageButton((void*)icon.get()->GetShaderResourceView(),
 			{ thumbnailSize, thumbnailSize }, { -1, 0 }, { 0,1 },
 			-1, ImVec4(1.0f, 1.0f, 1.0f, 0.5f),
@@ -210,10 +219,13 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	// create the object
 	
 	Vector3D pos;
-	
+	std::srand(std::time(nullptr));
 	int randomNumber = rand() % unused.size();
 	used.emplace_back(unused[randomNumber]);
-	pos = unused[randomNumber].pos;
+	pos = unused[randomNumber]->pos;
+	unused[randomNumber]->sceneIndex = objectID->sceneIndex;
+	//std::cout << "Unused Positions: " << unused[randomNumber]->sceneIndex << std::endl;
+	//std::cout << "Used Positions: " << used[used.size() - 1]->sceneIndex << std::endl;
 	unused.erase(unused.begin() + randomNumber);
 
 	BNS_AGameObject *objectToCreate = nullptr;
@@ -304,7 +316,7 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	PC_instance->sceneObjectDictionary[objectID->sceneIndex].emplace_back(objectToCreate);
 }
 
-void BNS_MultipleScene_UI::DeleteObjectInScene(int sceneIndex)
+void BNS_MultipleScene_UI::DeleteObjectsInScene(int sceneIndex)
 {
 	for (auto it = objectsOnScene.begin(); it != objectsOnScene.end();)
 	{
@@ -319,6 +331,18 @@ void BNS_MultipleScene_UI::DeleteObjectInScene(int sceneIndex)
 			++it;
 		}
 	}
+	for (int i = 0; i < 5; ++i)
+	{
+		PC_instance->sceneStatusDictionary[i]->isComplete = false;
+		PC_instance->sceneStatusDictionary[i]->isEmpty = true;
+		PC_instance->sceneStatusDictionary[i]->isLoading = false;
+		PC_instance->sceneStatusDictionary[i]->isProgressViewed = false;
+		PC_instance->sceneStatusDictionary[i]->isViewed = false;
+	}
+	objectsOnScene.shrink_to_fit();
+	objectsToLoad.shrink_to_fit();
+	showAllSem->acquire();
+	std::cout << "Semaphore Acquire!: " << sceneIndex << std::endl;
 }
 
 void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
@@ -362,17 +386,33 @@ void BNS_MultipleScene_UI::OnEntryRightClick(int index)
 	{
 		if (ImGui::Button("X", ImVec2(25, 25)))
 		{
+			// delete all the objects in that scene
 			for (int i = 0; i < 5; ++i)
 			{
 				if (index == i)
 				{
-					
-					DeleteObjectInScene(index);
+					DeleteObjectsInScene(index);
 					PC_instance->ResetScene(index);
-				
-
+					break;
 				}
 			}
+			// returning the used positions
+			for (auto it = used.begin(); it != used.end();)
+			{
+				if ((*it)->sceneIndex == index)
+				{
+					(*it)->sceneIndex = -1;
+					unused.push_back(*it);
+					it = used.erase(it);
+
+				}
+				else
+				{ // only increment if not erasing an element
+					++it;
+				}
+			}
+			unused.shrink_to_fit();
+			used.shrink_to_fit();
 			ImGui::CloseCurrentPopup();
 		}
 		ImGui::EndPopup();

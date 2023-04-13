@@ -50,7 +50,7 @@ BNS_PrimitiveCreation::BNS_PrimitiveCreation()
 	}
 
 
-	threadPool = new ThreadPool("threadPool", 5);
+	threadPool = new ThreadPool("threadPool", 6);
 	threadPool->StartScheduler();
 }
 

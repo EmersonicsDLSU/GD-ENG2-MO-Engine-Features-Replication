@@ -32,10 +32,10 @@ public:
 	std::vector<P3_ObjectID*> objectsToLoad;
 	std::vector<P3_ObjectID*> objectsOnScene;
 	void ExecuteObject(P3_ObjectID* objectID);
-	void DeleteObjectInScene(int sceneIndex);
+	void DeleteObjectsInScene(int sceneIndex);
 
-	std::vector<P3_Transforms> unused;
-	std::vector<P3_Transforms> used;
+	std::vector<P3_Transforms*> unused;
+	std::vector<P3_Transforms*> used;
 	
 private:
 	void OnEntryLeftClick(int i);
