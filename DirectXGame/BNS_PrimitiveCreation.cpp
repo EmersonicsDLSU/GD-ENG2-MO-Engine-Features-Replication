@@ -558,7 +558,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateCubone(Vector3D pos, Vector3D scal
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
-	cube->SetScale(0.1, 0.1, 0.1);
+	cube->SetScale(0.15, 0.15, 0.15);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
@@ -579,7 +579,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateEevee(Vector3D pos, Vector3D scale
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
-	cube->SetScale(0.1, 0.1, 0.1);
+	cube->SetScale(0.15, 0.15, 0.15);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
@@ -726,7 +726,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreatePidgey(Vector3D pos, Vector3D scal
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
-	cube->SetScale(0.1, 0.1, 0.1);
+	cube->SetScale(0.15, 0.15, 0.15);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
@@ -747,7 +747,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreatePikachu(Vector3D pos, Vector3D sca
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
-	cube->SetScale(0.1, 0.1, 0.1);
+	cube->SetScale(0.15, 0.15, 0.15);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
@@ -831,7 +831,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateSquirtle(Vector3D pos, Vector3D sc
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
-	cube->SetScale(0.1, 0.1, 0.1);
+	cube->SetScale(0.15, 0.15, 0.15);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
@@ -852,7 +852,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateVulpix(Vector3D pos, Vector3D scal
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
-	cube->SetScale(0.1, 0.1, 0.1);
+	cube->SetScale(0.15, 0.15, 0.15);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
