@@ -10,7 +10,7 @@ std::chrono::time_point<std::chrono::steady_clock> BNS_EngineTime::fpsTime = hig
 
 double BNS_EngineTime::fps = 0.0f;
 int BNS_EngineTime::frameCount = 0;
-std::chrono::duration<double> BNS_EngineTime::targetFrameTime = std::chrono::duration<double>(1.0 / 60.0);
+std::chrono::duration<double> BNS_EngineTime::targetFrameTime = std::chrono::duration<double>(1.0 / 180.0);
 
 void BNS_EngineTime::initialize()
 {
