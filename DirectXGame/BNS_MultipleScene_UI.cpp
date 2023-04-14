@@ -38,6 +38,8 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 		}
 		
 	}
+
+	PC_instance->LoadAllScene(this);
 }
 
 BNS_MultipleScene_UI::~BNS_MultipleScene_UI()
