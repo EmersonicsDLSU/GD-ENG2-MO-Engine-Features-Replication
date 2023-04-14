@@ -98,6 +98,11 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 			showAllSem->release();
 			std::cout << "Semaphore Release: " << currentScenesCompleted << "/5" << std::endl;
 			testSem->release();
+
+			if (!isViewAll && PC_instance->sceneStatusDictionary[sceneIndex]->isComplete && !PC_instance->sceneStatusDictionary[sceneIndex]->isEmpty && !PC_instance->sceneStatusDictionary[sceneIndex]->isLoading)
+			{
+				ShowScene(sceneIndex);
+			}
 			break;
 		}
 	}
@@ -115,6 +120,7 @@ void BNS_MultipleScene_UI::onExecuteAll()
 				PC_instance->sceneStatusDictionary[index]->isComplete) continue;
 
 			PC_instance->LoadAScene(index, this);
+			isViewAll = true;
 		}
 
 		// it needs 5 keys
@@ -139,6 +145,8 @@ void BNS_MultipleScene_UI::onExecuteAll()
 			currentScenesCompleted += 1;
 			std::cout << "Semaphore Release: " << currentScenesCompleted << "/5" << std::endl;
 			testSem->release();
+
+			isViewAll = false;
 		}
 
 		break;
@@ -362,26 +370,21 @@ void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
 {
 	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
 	{
-		for (int i = 0; i < 5; ++i)
+		if (PC_instance->sceneStatusDictionary[index]->isLoading)
 		{
-			if (PC_instance->sceneStatusDictionary[i]->isLoading)
-			{
-				ResetAllButtonsProgressView();
-				PC_instance->sceneStatusDictionary[i]->isProgressViewed = true;
-				std::cout << "Progress Viewed" << std::endl;
-				continue;
-			}
-			if (index == i && PC_instance->sceneStatusDictionary[i]->isEmpty)
-			{
-				std::cout << "Load Scene: " << index << std::endl;
-				PC_instance->LoadAScene(index, this);
-			}
-			else if (index == i && PC_instance->sceneStatusDictionary[i]->isComplete)
-			{
-				ResetAllButtonsView();
-				PC_instance->sceneStatusDictionary[i]->isViewed = true;
-				PC_instance->ShowScene(index);
-			}
+			ResetAllButtonsProgressView();
+			PC_instance->sceneStatusDictionary[index]->isProgressViewed = true;
+			currentProgressViewed = index;
+			std::cout << "Progress Viewed" << std::endl;
+		}
+		if (PC_instance->sceneStatusDictionary[index]->isEmpty && !PC_instance->sceneStatusDictionary[index]->isLoading && !PC_instance->sceneStatusDictionary[index]->isComplete)
+		{
+			std::cout << "Load Scene: " << index << std::endl;
+			PC_instance->LoadAScene(index, this);
+		}
+		else if (PC_instance->sceneStatusDictionary[index]->isComplete && !PC_instance->sceneStatusDictionary[index]->isEmpty && !PC_instance->sceneStatusDictionary[index]->isLoading)
+		{
+			ShowScene(index);
 		}
 	}
 }
@@ -471,4 +474,11 @@ void BNS_MultipleScene_UI::ShowProgressBar(int index)
 			ImGui::End();
 		}
 	}
+}
+
+void BNS_MultipleScene_UI::ShowScene(int index)
+{
+	ResetAllButtonsView();
+	PC_instance->sceneStatusDictionary[index]->isViewed = true;
+	PC_instance->ShowScene(index);
 }

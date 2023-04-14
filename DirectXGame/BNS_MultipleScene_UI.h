@@ -25,7 +25,9 @@ public:
 private:
 	BNS_PrimitiveCreation* PC_instance;
 	bool active;
+	bool isViewAll = false;
 	int currentScenesCompleted = 0;
+	int currentProgressViewed = -1;
 
 	std::counting_semaphore<1>* testSem;
 	std::counting_semaphore<1>* mutexSem;
@@ -45,6 +47,7 @@ private:
 	void ResetAllButtonsView();
 	void ResetAllButtonsProgressView();
 	void ShowProgressBar(int index);
+	void ShowScene(int index);
 };
 
 
