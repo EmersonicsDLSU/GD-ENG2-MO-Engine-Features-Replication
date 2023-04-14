@@ -25,7 +25,9 @@ public:
 private:
 	BNS_PrimitiveCreation* PC_instance;
 	bool active;
+	int currentScenesCompleted = 0;
 
+	std::counting_semaphore<1>* testSem;
 	std::counting_semaphore<1>* mutexSem;
 	std::counting_semaphore<5>* showAllSem;
 public:

@@ -29,7 +29,7 @@ BNS_AGameObject::~BNS_AGameObject()
 		componentList[i]->DetachOwner();
 	}
 	componentList.clear();
-	std::cout << "Deleted Object: " << this->GetName() << std::endl;
+	//std::cout << "Deleted Object: " << this->GetName() << std::endl;
 }
 
 void BNS_AGameObject::UpdateTransform()

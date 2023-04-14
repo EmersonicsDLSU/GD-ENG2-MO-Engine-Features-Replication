@@ -23,6 +23,7 @@ BNS_MultipleScene_UI::BNS_MultipleScene_UI(std::string name, int ID) : BNS_AUISc
 	}
 
 	// initialize semaphore
+	testSem = new std::counting_semaphore<1>(1);
 	mutexSem = new std::counting_semaphore<1>(1);
 	showAllSem = new std::counting_semaphore<5>(0);
 	int counter = 0;
@@ -92,8 +93,11 @@ void BNS_MultipleScene_UI::onExecute(int sceneIndex)
 			PC_instance->sceneStatusDictionary[sceneIndex]->isLoading = false;
 			PC_instance->sceneStatusDictionary[sceneIndex]->isComplete = true;
 			// release one completed scene
+			testSem->acquire();
+			currentScenesCompleted += 1;
 			showAllSem->release();
-			std::cout << "Semaphore Release!: " << sceneIndex << std::endl;
+			std::cout << "Semaphore Release: " << currentScenesCompleted << "/5" << std::endl;
+			testSem->release();
 			break;
 		}
 	}
@@ -117,7 +121,10 @@ void BNS_MultipleScene_UI::onExecuteAll()
 		for (int i = 0; i < 5; i++)
 		{
 			showAllSem->acquire();
-			std::cout << "Semaphore Acquire!" << std::endl;
+			testSem->acquire();
+			currentScenesCompleted -= 1;
+			std::cout << "Semaphore Acquire: " << currentScenesCompleted << "/5" << std::endl;
+			testSem->release();
 		}
 
 		for (int index = 0; index < 5; ++index)
@@ -128,7 +135,10 @@ void BNS_MultipleScene_UI::onExecuteAll()
 		for (int i = 0; i < 5; i++)
 		{
 			showAllSem->release();
-			std::cout << "Semaphore Release!" << std::endl;
+			testSem->acquire();
+			currentScenesCompleted += 1;
+			std::cout << "Semaphore Release: " << currentScenesCompleted << "/5" << std::endl;
+			testSem->release();
 		}
 
 		break;
@@ -316,7 +326,7 @@ void BNS_MultipleScene_UI::ExecuteObject(P3_ObjectID *objectID)
 	PC_instance->sceneObjectDictionary[objectID->sceneIndex].emplace_back(objectToCreate);
 }
 
-void BNS_MultipleScene_UI::DeleteObjectsInScene(int sceneIndex)
+void BNS_MultipleScene_UI::DeleteObjectsInScene(int sceneIndex) // 1 scene = 5 objs deleted
 {
 	for (auto it = objectsOnScene.begin(); it != objectsOnScene.end();)
 	{
@@ -331,18 +341,21 @@ void BNS_MultipleScene_UI::DeleteObjectsInScene(int sceneIndex)
 			++it;
 		}
 	}
-	for (int i = 0; i < 5; ++i)
-	{
-		PC_instance->sceneStatusDictionary[i]->isComplete = false;
-		PC_instance->sceneStatusDictionary[i]->isEmpty = true;
-		PC_instance->sceneStatusDictionary[i]->isLoading = false;
-		PC_instance->sceneStatusDictionary[i]->isProgressViewed = false;
-		PC_instance->sceneStatusDictionary[i]->isViewed = false;
-	}
+
+	// reset the scene
+	PC_instance->sceneStatusDictionary[sceneIndex]->isComplete = false;
+	PC_instance->sceneStatusDictionary[sceneIndex]->isEmpty = true;
+	PC_instance->sceneStatusDictionary[sceneIndex]->isLoading = false;
+	PC_instance->sceneStatusDictionary[sceneIndex]->isProgressViewed = false;
+	PC_instance->sceneStatusDictionary[sceneIndex]->isViewed = false;
+
 	objectsOnScene.shrink_to_fit();
 	objectsToLoad.shrink_to_fit();
+	testSem->acquire();
 	showAllSem->acquire();
-	std::cout << "Semaphore Acquire!: " << sceneIndex << std::endl;
+	currentScenesCompleted -= 1;
+	std::cout << "Semaphore Acquire: " << currentScenesCompleted << "/5" << std::endl;
+	testSem->release();
 }
 
 void BNS_MultipleScene_UI::OnEntryLeftClick(int index)
