@@ -205,6 +205,8 @@ void BNS_MultipleScene_UI::DrawUI()
 		OnEntryLeftClick(i);
 		OnEntryRightClick(i);
 		ShowProgressBar(i);
+		if (i == 0)
+			ShowAllAverageProgressBar();
 
 		ImGui::PopStyleColor(3); // restore default colors
 
@@ -471,6 +473,36 @@ void BNS_MultipleScene_UI::ShowProgressBar(int index)
 			// Draw progress bar
 			ImGui::Text("Scene: %d", index + 1);
 			ImGui::ProgressBar(progress, ImVec2(-1, 0), (std::to_string(progress * 100.0f) + "%").c_str());
+			ImGui::End();
+		}
+	}
+}
+
+void BNS_MultipleScene_UI::ShowAllAverageProgressBar()
+{
+	// show progress bar when loading icon is clicked
+	if (isViewAll)
+	{
+		float average = 0.0f;
+		for (int i = 0; i < 5; ++i)
+		{
+			// Calculate progress value
+			float progress = (float)PC_instance->sceneObjectDictionary[i].size() /
+				(float)PC_instance->maxPopulation;
+			average += progress;
+		}
+		average /= 5;
+
+		if (average >= 1.0f) {
+			// Close progress window
+			ImGui::CloseCurrentPopup();
+			average = 0.0f;
+		}
+		else {
+			ImGui::Begin("Progress Bar");
+			// Draw progress bar
+			ImGui::Text("All Scene");
+			ImGui::ProgressBar(average, ImVec2(-1, 0), (std::to_string(average * 100.0f) + "%").c_str());
 			ImGui::End();
 		}
 	}

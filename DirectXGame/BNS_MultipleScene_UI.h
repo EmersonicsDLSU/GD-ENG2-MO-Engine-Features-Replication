@@ -47,6 +47,7 @@ private:
 	void ResetAllButtonsView();
 	void ResetAllButtonsProgressView();
 	void ShowProgressBar(int index);
+	void ShowAllAverageProgressBar();
 	void ShowScene(int index);
 };
 
