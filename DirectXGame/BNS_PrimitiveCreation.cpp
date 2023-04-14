@@ -200,7 +200,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateTeapot(Vector3D pos, Vector3D scal
 	cube->SetVertexShader(BNS_VertexShaderType::TEXTURE);
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetPosition(pos);
-	cube->SetScale(scale);
+	cube->SetScale(5,5,5);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
@@ -220,7 +220,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateStatue(Vector3D pos, Vector3D scal
 	cube->SetVertexShader(BNS_VertexShaderType::LIGHTING);
 	cube->SetPixelShader(BNS_PixelShaderType::LIGHTING);
 	cube->SetPosition(pos);
-	cube->SetScale(scale);
+	cube->SetScale(10,10,10);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
@@ -241,7 +241,7 @@ BNS_AGameObject* BNS_PrimitiveCreation::CreateBunny(Vector3D pos, Vector3D scale
 	cube->SetPixelShader(BNS_PixelShaderType::MESH);
 	cube->SetTexture(L"Assets\\Textures\\brick.png");
 	cube->SetPosition(pos);
-	cube->SetScale(scale);
+	cube->SetScale(10,10,10);
 
 	// adding transform component
 	BNS_TransformComponent* transformComp = new BNS_TransformComponent("PhysTransform", cube);
