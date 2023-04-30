@@ -1,9 +1,9 @@
 # MO-SCENE EDITOR
 Members (Brooklyn Nets):
-Emerson Paul Celestial
-Aldrey Gaurana
-Joseph Christopher Santos
-Eryn Tallador
+Emerson Paul Celestial\n
+Aldrey Gaurana\n
+Joseph Christopher Santos\n
+Eryn Tallador\n
 
 
 Go to master branch. The project can be cloned at the master branch.
