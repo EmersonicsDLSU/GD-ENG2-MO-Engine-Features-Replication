@@ -1,21 +1,21 @@
-# MO-SCENE EDITOR
-Members (Brooklyn Nets):
-Emerson Paul Celestial\n
-Aldrey Gaurana\n
-Joseph Christopher Santos\n
-Eryn Tallador\n
+# MO-SCENE EDITOR  
+Members (Brooklyn Nets):  
+Emerson Paul Celestial  
+Aldrey Gaurana  
+Joseph Christopher Santos  
+Eryn Tallador  
 
 
-Go to master branch. The project can be cloned at the master branch.
-Main entry point is in the 'BNS_main.cpp'
+Go to master branch. The project can be cloned at the master branch.  
+Main entry point is in the 'BNS_main.cpp'  
 
-Navigating Around the Level:
-1. Go to the 'Scene Window'.
-2. Drag your mouse while pressing the right mouse button to rotate the camera view.
-3. 'WASD' are the keys to press for moving around the level.
-4. 'QE' to move up and down the scene.
+Navigating Around the Level:  
+1. Go to the 'Scene Window'.  
+2. Drag your mouse while pressing the right mouse button to rotate the camera view.  
+3. 'WASD' are the keys to press for moving around the level.  
+4. 'QE' to move up and down the scene.  
 
-When Creating Objects:
+When Creating Objects:  
 1. In the menu toolbar, go to the 'Create Gameobject' tab and select a list of objects you want to spawn.
 2. In the content browser, go to the mesh folder and find an object / mesh file. Double-click that file to spawn the object in the level.
 
